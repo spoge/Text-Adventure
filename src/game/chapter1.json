@@ -1,0 +1,149 @@
+{
+  "scenes": [
+    {
+      "id": "shipwreck_1",
+      "name": "Awaken",
+      "descriptions": [
+        "Through mountains of mist and dungeons of terror. Soaring through the sky you feel alive.",
+        "But you realize that you are not awake. This is only a dream.",
+        "Your mind is drifting.",
+        "First now do you notice that your hand is cold."
+      ],
+      "actions": [
+        {
+          "actionText": "Open your eyes",
+          "triggers": [
+            {
+              "type": "movement",
+              "target": "shipwreck_2"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "shipwreck_2",
+      "name": "Open eyes",
+      "descriptions": [
+        "You open your eyes.",
+        "Around you is your familiar cabin. Your home for the last five years. ",
+        "But something is not right.",
+        "There shouldn't be water waist high in the cabin."
+      ],
+      "actions": [
+        {
+          "actionText": "Stand up",
+          "triggers": [
+            {
+              "type": "movement",
+              "target": "shipwreck_3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "shipwreck_3",
+      "name": "Cabin",
+      "descriptions": [
+        "You stand up and look quickly around yourself.",
+        "You realize that you don't have much time. The ship is sinking and you only have time to grab some essentials.",
+        {
+          "text": "You hold the sword in your hand. You can't pick up anything else.",
+          "showIfFlag": "have_sword"
+        },
+        {
+          "text": "You hold the bag of food. You can't pick up anything else.",
+          "showIfFlag": "have_food"
+        }
+      ],
+      "actions": [
+        {
+          "actionText": "Take sword",
+          "hideIfAnyFlag": ["have_sword", "have_food"],
+          "triggers": [
+            {
+              "type": "add_flag",
+              "target": "have_sword"
+            }
+          ]
+        },
+        {
+          "actionText": "Drop sword",
+          "showIfFlag": "have_sword",
+          "triggers": [
+            {
+              "type": "remove_flag",
+              "target": "have_sword"
+            }
+          ]
+        },
+        {
+          "actionText": "Take bag of food",
+          "hideIfAnyFlag": ["have_food", "have_sword"],
+          "triggers": [
+            {
+              "type": "add_flag",
+              "target": "have_food"
+            }
+          ]
+        },
+        {
+          "actionText": "Drop bag of food",
+          "showIfFlag": "have_food",
+          "triggers": [
+            {
+              "type": "remove_flag",
+              "target": "have_food"
+            }
+          ]
+        },
+        {
+          "actionText": "Go to the upper deck",
+          "showIfAnyFlag": ["have_food", "have_sword"],
+          "triggers": [
+            {
+              "type": "movement",
+              "target": "shipwreck_4"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "shipwreck_4",
+      "name": "On deck",
+      "descriptions": [
+        "The waves are tall and dangerously close to just sweep the whole ship under in one fell swoop.",
+        "You see land in the distance, but you know you can't swim that far with all your newly picked up luggage.",
+        {
+          "text": "You hold the plank. Looking at it you wonder if it can function as a makeshift raft?",
+          "showIfFlag": "have_plank"
+        }
+      ],
+      "actions": [
+        {
+          "actionText": "Take plank",
+          "hideIfFlag": "have_plank",
+          "triggers": [
+            {
+              "type": "add_flag",
+              "target": "have_plank"
+            }
+          ]
+        },
+        {
+          "actionText": "Jump overboard with the plank",
+          "showIfFlag": "have_plank",
+          "triggers": [
+            {
+              "type": "remove_flag",
+              "target": "have_plank"
+            },
+            { "type": "movement", "target": "beach", "chapter": "" }
+          ]
+        }
+      ]
+    }
+  ]
+}
