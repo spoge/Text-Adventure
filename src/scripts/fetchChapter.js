@@ -1,5 +1,4 @@
 const fetchChapter = (chapterId, setChapter) => {
-  console.log(chapterId);
   fetch(`${process.env.PUBLIC_URL}/game/${chapterId}.json`, {
     headers: {
       "Content-Type": "application/json",
