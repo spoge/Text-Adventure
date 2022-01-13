@@ -2,8 +2,10 @@
   "scenes": [
     {
       "id": "beach_1",
-      "name": "Breach",
-      "paragraphs": ["You wake up on the beach."],
+      "name": "Beach",
+      "paragraphs": [
+        "You wake up on the beach."
+      ],
       "actions": [
         {
           "actionText": "Stand up",
@@ -19,7 +21,9 @@
     {
       "id": "beach_2",
       "name": "Beach",
-      "paragraphs": ["You stand on the beach."],
+      "paragraphs": [
+        "You stand on the beach."
+      ],
       "actions": []
     }
   ]

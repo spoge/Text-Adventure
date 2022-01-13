@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/text-adventure/static/css/main.346e8f8e.css",
-    "main.js": "/text-adventure/static/js/main.e1230281.js",
-    "static/js/787.fe097c23.chunk.js": "/text-adventure/static/js/787.fe097c23.chunk.js",
-    "static/media/ScreenMatrix.ttf": "/text-adventure/static/media/ScreenMatrix.fd85a34b1d5a1d249784.ttf",
-    "index.html": "/text-adventure/index.html",
-    "main.346e8f8e.css.map": "/text-adventure/static/css/main.346e8f8e.css.map",
-    "main.e1230281.js.map": "/text-adventure/static/js/main.e1230281.js.map",
-    "787.fe097c23.chunk.js.map": "/text-adventure/static/js/787.fe097c23.chunk.js.map"
+    "main.css": "/static/css/main.139890e2.css",
+    "main.js": "/static/js/main.2891d34f.js",
+    "static/js/787.fe097c23.chunk.js": "/static/js/787.fe097c23.chunk.js",
+    "static/media/ScreenMatrix.ttf": "/static/media/ScreenMatrix.fd85a34b1d5a1d249784.ttf",
+    "index.html": "/index.html",
+    "main.139890e2.css.map": "/static/css/main.139890e2.css.map",
+    "main.2891d34f.js.map": "/static/js/main.2891d34f.js.map",
+    "787.fe097c23.chunk.js.map": "/static/js/787.fe097c23.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.346e8f8e.css",
-    "static/js/main.e1230281.js"
+    "static/css/main.139890e2.css",
+    "static/js/main.2891d34f.js"
   ]
 }
