@@ -1,10 +1,13 @@
-import React, { useReducer, useMemo } from "react";
+import React, { useReducer, useMemo, useState } from "react";
 import "./App.css";
 import Game from "./Game";
 import { GameContext, GameReducer } from "../reducer/GameReducer";
 
-const fileChapter = require("../game/chapter1.json");
-const initialState = { sceneId: "shipwreck_1", flags: [] };
+const initialState = {
+  chapterId: "chapter_1",
+  sceneId: "shipwreck_1",
+  flags: [],
+};
 
 const App = () => {
   const [state, dispatch] = useReducer(GameReducer, initialState);
@@ -16,7 +19,7 @@ const App = () => {
   return (
     <div className="app">
       <GameContext.Provider value={contextValue}>
-        <Game chapter={fileChapter} />
+        <Game />
       </GameContext.Provider>
     </div>
   );

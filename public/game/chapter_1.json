@@ -140,7 +140,11 @@
               "type": "remove_flag",
               "target": "have_plank"
             },
-            { "type": "movement", "target": "beach", "chapter": "" }
+            {
+              "type": "movement",
+              "target": "beach_1",
+              "chapterId": "chapter_2"
+            }
           ]
         }
       ]

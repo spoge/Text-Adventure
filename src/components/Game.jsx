@@ -1,15 +1,23 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import "./Game.css";
 import Terminal from "./Terminal";
+import fetchChapter from "../scripts/fetchChapter";
 import shouldShow from "../scripts/flagChecker";
 import { GameContext } from "../reducer/GameReducer";
+import { useEffect } from "react/cjs/react.development";
 
-const Game = ({ chapter }) => {
+const Game = () => {
   const { state, dispatch } = useContext(GameContext);
 
+  const [chapter, setChapter] = useState({});
+
+  useEffect(() => {
+    fetchChapter(state.chapterId, setChapter);
+  }, [state]);
+
   const flags = state.flags;
-  const scene = chapter.scenes.find((l) => l.id === state.sceneId);
-  const debug = true;
+  const scene = chapter?.scenes?.find((l) => l.id === state.sceneId);
+  const debug = false;
 
   const handleTrigger = (trigger) => {
     if (
@@ -21,7 +29,10 @@ const Game = ({ chapter }) => {
     }
     switch (trigger.type) {
       case "movement":
-        dispatch({ type: "movement", payload: trigger.target });
+        dispatch({
+          type: "movement",
+          payload: { sceneId: trigger.target, chapterId: trigger.chapterId },
+        });
         break;
       case "add_flag":
         dispatch({ type: "add_flag", payload: trigger.target });

@@ -4,7 +4,14 @@ const GameContext = React.createContext();
 const GameReducer = (state, action) => {
   switch (action.type) {
     case "movement":
-      return { ...state, sceneId: action.payload };
+      return {
+        ...state,
+        sceneId: action.payload.sceneId,
+        chapterId:
+          action.payload.chapterId === undefined
+            ? state.chapterId
+            : action.payload.chapterId,
+      };
     case "remove_flag":
       return {
         ...state,
