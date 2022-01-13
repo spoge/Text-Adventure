@@ -47,12 +47,12 @@ const Game = ({ chapter }) => {
         <h3 className="scene-name">{scene?.name}</h3>
         <hr />
         <div className="paragraphs">
-          {scene?.descriptions
+          {scene?.paragraphs
             .filter((d) => shouldShow(flags, d))
             .map((d) => (typeof d === "string" ? d : d.text))
-            .map((description, index) => (
+            .map((paragraph, index) => (
               <div className="paragraph" key={index}>
-                {description}
+                {paragraph}
               </div>
             ))}
         </div>

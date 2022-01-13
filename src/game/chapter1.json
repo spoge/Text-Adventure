@@ -3,7 +3,7 @@
     {
       "id": "shipwreck_1",
       "name": "Awaken",
-      "descriptions": [
+      "paragraphs": [
         "Through mountains of mist and dungeons of terror. Soaring through the sky you feel alive.",
         "But you realize that you are not awake. This is only a dream.",
         "Your mind is drifting.",
@@ -24,7 +24,7 @@
     {
       "id": "shipwreck_2",
       "name": "Open eyes",
-      "descriptions": [
+      "paragraphs": [
         "You open your eyes.",
         "Around you is your familiar cabin. Your home for the last five years. ",
         "But something is not right.",
@@ -45,7 +45,7 @@
     {
       "id": "shipwreck_3",
       "name": "Cabin",
-      "descriptions": [
+      "paragraphs": [
         "You stand up and look quickly around yourself.",
         "You realize that you don't have much time. The ship is sinking and you only have time to grab some essentials.",
         {
@@ -113,7 +113,7 @@
     {
       "id": "shipwreck_4",
       "name": "On deck",
-      "descriptions": [
+      "paragraphs": [
         "The waves are tall and dangerously close to just sweep the whole ship under in one fell swoop.",
         "You see land in the distance, but you know you can't swim that far with all your newly picked up luggage.",
         {
