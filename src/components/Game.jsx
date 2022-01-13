@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import "./Game.css";
+import "./styles/Game.css";
 import Terminal from "./Terminal";
 import fetchChapter from "../scripts/fetchChapter";
 import shouldShow from "../scripts/flagChecker";

@@ -1,5 +1,5 @@
 import React, { useReducer, useMemo } from "react";
-import "./App.css";
+import "./styles/App.css";
 import Game from "./Game";
 import { GameContext, GameReducer } from "../reducer/GameReducer";
 

@@ -1,5 +1,6 @@
 const fetchChapter = (chapterId, setChapter) => {
-  fetch("game/" + chapterId + ".json", {
+  console.log(chapterId);
+  fetch(`game/${chapterId}.json`, {
     headers: {
       "Content-Type": "application/json",
       Accept: "application/json",
