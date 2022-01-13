@@ -1,4 +1,4 @@
-import React, { useReducer, useMemo, useState } from "react";
+import React, { useReducer, useMemo } from "react";
 import "./App.css";
 import Game from "./Game";
 import { GameContext, GameReducer } from "../reducer/GameReducer";

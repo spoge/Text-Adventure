@@ -1,10 +1,9 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import "./Game.css";
 import Terminal from "./Terminal";
 import fetchChapter from "../scripts/fetchChapter";
 import shouldShow from "../scripts/flagChecker";
 import { GameContext } from "../reducer/GameReducer";
-import { useEffect } from "react/cjs/react.development";
 
 const Game = () => {
   const { state, dispatch } = useContext(GameContext);
