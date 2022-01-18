@@ -60,11 +60,14 @@ const Game = () => {
           {scene?.paragraphs
             .filter((d) => shouldShow(flags, d))
             .map((d) => (typeof d === "string" ? d : d.text))
-            .map((paragraph, index) => (
-              <div className="paragraph" key={index}>
-                {paragraph}
-              </div>
-            ))}
+            .map((paragraph, index) => {
+              if (paragraph === "---") return <hr />;
+              return (
+                <div className="paragraph" key={index}>
+                  {paragraph}
+                </div>
+              );
+            })}
         </div>
         {scene?.actions.length > 0 && (
           <>

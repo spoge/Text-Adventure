@@ -4,7 +4,9 @@
       "id": "beach_1",
       "name": "Beach",
       "paragraphs": [
-        "You wake up on the beach."
+        "You wake up on the beach.",
+        "The salty taste of the sea is notable.",
+        "Your clothes are heavy and soaked."
       ],
       "actions": [
         {
@@ -22,9 +24,140 @@
       "id": "beach_2",
       "name": "Beach",
       "paragraphs": [
-        "You stand on the beach."
+        "You rise up slowly and look around",
+        "You're not sure if you're stranded on an island or even a continent.",
+        "But one thing is for certain. You have no idea where you are.",
+        "Above the beach you spot some trees - or maybe a forest?"
       ],
-      "actions": []
+      "actions": [
+        {
+          "actionText": "Walk up to the trees",
+          "triggers": [
+            {
+              "type": "movement",
+              "target": "beach_3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "beach_3",
+      "name": "Beach - Forest Entrance",
+      "paragraphs": [
+        "Indeed, there was a forest here.",
+        {
+          "text": "Just at the entrance there's a palm tree with a coconut.",
+          "hideIfFlag": "chopped_down_palm_tree"
+        },
+        {
+          "text": "If only you had something that could chop it down.",
+          "showIfFlag": "have_food",
+          "hideIfAnyFlag": ["have_sword", "chopped_down_palm_tree"]
+        },
+        {
+          "text": "You chopped down the palm tree. It lays before you.",
+          "showIfFlag": "chopped_down_palm_tree"
+        },
+        {
+          "text": "You will probably manage to open the coconut, but you're also quite certain that your sword will break.",
+          "showIfFlag": "chopped_down_palm_tree",
+          "hideIfAnyFlag": ["have_opened_coconut", "have_coconut"]
+        },
+        {
+          "text": "Your sword broke. But you now have an opened coconut. It smells juicy.",
+          "showIfFlag": "have_opened_coconut",
+          "hideIfFlag": "have_coconut"
+        },
+        {
+          "text": "You took the coconut. Maybe you will find something that can open it later?",
+          "showIfFlag": "have_coconut",
+          "hideIfFlag": "have_opened_coconut"
+        },
+        {
+          "text": "You punched the palm tree. It really hurt. You're quite sure that you shouldn't do that again.",
+          "showIfFlag": "punched_palm_tree",
+          "hideIfAnyFlag": ["punched_palm_tree_again", "chopped_down_palm_tree"]
+        },
+        {
+          "text": "Did you really punch the palm tree again? You start bleeding.",
+          "showIfFlag": "punched_palm_tree_again",
+          "hideIfFlag": "chopped_down_palm_tree"
+        }
+      ],
+      "actions": [
+        {
+          "actionText": "Chop down palm tree",
+          "showIfFlag": "have_sword",
+          "hideIfFlag": "chopped_down_palm_tree",
+          "triggers": [
+            {
+              "type": "add_flag",
+              "target": "chopped_down_palm_tree"
+            }
+          ]
+        },
+        {
+          "actionText": "Open coconut [sword will break]",
+          "showIfFlag": "chopped_down_palm_tree",
+          "hideIfAnyFlag": ["have_opened_coconut", "have_coconut"],
+          "triggers": [
+            {
+              "type": "add_flag",
+              "target": "have_opened_coconut"
+            },
+            {
+              "type": "remove_flag",
+              "target": "have_sword"
+            }
+          ]
+        },
+        {
+          "actionText": "Take coconut",
+          "showIfFlag": "chopped_down_palm_tree",
+          "hideIfAnyFlag": ["have_coconut", "have_opened_coconut"],
+          "triggers": [
+            {
+              "type": "add_flag",
+              "target": "have_coconut"
+            }
+          ]
+        },
+        {
+          "actionText": "Punch tree",
+          "hideIfAnyFlag": ["punched_palm_tree", "chopped_down_palm_tree"],
+          "triggers": [
+            {
+              "type": "add_flag",
+              "target": "punched_palm_tree"
+            }
+          ]
+        },
+        {
+          "actionText": "Punch tree again",
+          "showIfFlag": "punched_palm_tree",
+          "hideIfAnyFlag": [
+            "chopped_down_palm_tree",
+            "punched_palm_tree_again"
+          ],
+          "triggers": [
+            {
+              "type": "add_flag",
+              "target": "punched_palm_tree_again"
+            }
+          ]
+        },
+        {
+          "actionText": "Enter the forest",
+          "triggers": [
+            {
+              "type": "movement",
+              "target": "forest_1",
+              "chapterId": "chapter_3"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
