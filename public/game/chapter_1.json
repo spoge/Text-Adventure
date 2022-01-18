@@ -49,11 +49,11 @@
         "You stand up and look quickly around yourself.",
         "You realize that you don't have much time. The ship is sinking and you only have time to grab some essentials.",
         {
-          "text": "You hold the sword in your hand. You can't pick up anything else.",
+          "text": "> You hold the sword in your hand. You can't pick up anything else.",
           "showIfFlag": "have_sword"
         },
         {
-          "text": "You hold the bag of food. You can't pick up anything else.",
+          "text": "> You hold the bag of food. You can't pick up anything else.",
           "showIfFlag": "have_food"
         }
       ],
@@ -117,7 +117,7 @@
         "The waves are tall and dangerously close to just sweep the whole ship under in one fell swoop.",
         "You see land in the distance, but you know you can't swim that far with all your newly picked up luggage.",
         {
-          "text": "You hold the plank. Looking at it you wonder if it can function as a makeshift raft?",
+          "text": "> You hold the plank. Looking at it you wonder if it can function as a makeshift raft?",
           "showIfFlag": "have_plank"
         }
       ],
