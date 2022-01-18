@@ -1,0 +1,21 @@
+{
+  "scenes": [
+    {
+      "id": "forest_1",
+      "name": "Forest",
+      "paragraphs": ["You enter the forest. It's quite mushy."],
+      "actions": [
+        {
+          "actionText": "Go back to the beach",
+          "triggers": [
+            {
+              "type": "movement",
+              "target": "beach_3",
+              "chapterId": "chapter_2"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
