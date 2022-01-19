@@ -4,14 +4,10 @@ import "../styles/Terminal.css";
 const Terminal = ({ children }) => {
   return (
     <div className="terminal-window">
-      <div className="terminal-wrapper">
-        <div className="scanline"></div>
-        <div className="crt-lines"></div>
-        <div className="radial-background"></div>
-        <div className="terminal">
-          <div className="terminal-content">{children}</div>
-        </div>
-      </div>
+      <div className="scanline" />
+      <div className="crt-lines" />
+      <div className="radial-background" />
+      <div className="terminal">{children}</div>
     </div>
   );
 };
