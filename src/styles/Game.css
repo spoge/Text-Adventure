@@ -6,7 +6,7 @@
   padding: 0.5em 0;
 }
 
-.label {
+.small-title {
   margin-top: 1em;
   margin-bottom: 0;
   font-weight: bold;
@@ -15,17 +15,4 @@
 .action:hover {
   color: black;
   background-color: #5bf870;
-}
-
-.log-label {
-  margin-top: 2em;
-  margin-bottom: 0;
-}
-
-.logs {
-  font-size: 0.75;
-}
-
-.log {
-  padding: 0.25em 0;
 }

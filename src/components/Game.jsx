@@ -9,6 +9,8 @@ import HorizontalLine from "./common/HorizontalLine";
 import Paragraphs from "./game/Paragraphs";
 import Actions from "./game/Actions";
 import DebugStats from "./DebugStats";
+import Title from "./common/Title";
+import SmallTitle from "./common/SmallTitle";
 
 const Game = () => {
   const { state, dispatch } = useContext(GameContext);
@@ -31,21 +33,19 @@ const Game = () => {
   };
 
   return (
-    <div className="scene">
-      <Terminal>
-        <h3 className="scene-name">{scene?.name}</h3>
-        <HorizontalLine />
-        <Paragraphs flags={flags} paragraphs={scene?.paragraphs} />
-        <HorizontalLine />
-        {scene?.actions.length > 0 && <h4 className="label">Actions:</h4>}
-        <Actions
-          actions={scene?.actions}
-          flags={flags}
-          onActionClick={actionClick}
-        />
-        {debug && <DebugStats flags={flags} />}
-      </Terminal>
-    </div>
+    <Terminal>
+      <Title title={scene?.name} />
+      <HorizontalLine />
+      <Paragraphs flags={flags} paragraphs={scene?.paragraphs} />
+      <HorizontalLine />
+      {scene?.actions.length > 0 && <SmallTitle title="Actions:" />}
+      <Actions
+        actions={scene?.actions}
+        flags={flags}
+        onActionClick={actionClick}
+      />
+      {debug && <DebugStats flags={flags} />}
+    </Terminal>
   );
 };
 
