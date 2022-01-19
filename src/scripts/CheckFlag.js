@@ -34,4 +34,20 @@ const isVisible = (flags, obj) => {
   return true;
 };
 
-export default isVisible;
+const hasShowFlags = (obj) => {
+  return (
+    obj.showIfFlag !== undefined ||
+    obj.showIfAnyFlag !== undefined ||
+    obj.showIfAllFlags !== undefined
+  );
+};
+
+const hasShowFlag = (flag, obj) => {
+  return (
+    (obj.showIfFlag !== undefined && obj.showIfFlag === flag) ||
+    (obj.showIfAnyFlag !== undefined && obj.showIfAnyFlag.includes(flag)) ||
+    (obj.showIfAllFlags !== undefined && obj.showIfAllFlags.includes(flag))
+  );
+};
+
+export { isVisible, hasShowFlags, hasShowFlag };

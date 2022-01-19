@@ -1,4 +1,4 @@
-import isVisible from "../../scripts/CheckFlag";
+import { isVisible } from "../../scripts/CheckFlag";
 
 const Actions = ({ actions, flags, onActionClick }) => {
   return (
@@ -12,7 +12,7 @@ const Actions = ({ actions, flags, onActionClick }) => {
               key={index}
               onClick={() => onActionClick(index)}
             >
-              {`> ${action.actionText}`}
+              {`> ${action.text}`}
             </div>
           ))}
     </div>

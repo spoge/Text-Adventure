@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import "../styles/Game.css";
 import Terminal from "./Terminal";
-import isVisible from "../scripts/CheckFlag";
+import { isVisible } from "../scripts/CheckFlag";
 import dispatchTrigger from "../scripts/DispatchTrigger";
 import fetchChapter from "../scripts/FetchChapter";
 import { GameContext } from "../reducer/GameReducer";

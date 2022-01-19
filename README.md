@@ -1,70 +1,116 @@
-# Getting Started with Create React App
+# Sboge - Text Adventure
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The goal of this project is to create a simple text adventure in React, where the entire adventure is stored in json. These files are static and will not be changed.
 
-## Available Scripts
+The game only saves three things:
 
-In the project directory, you can run:
+- Current Chapter
+- Current Scene
+- Flags ()
 
-### `npm start`
+## About
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+The game is loaded from json-files. Each json-file is a `chapter`.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Structure of a `chapter.json`
 
-### `npm test`
+```
+{
+  "scenes": [
+    {
+      "id": "scene_1",
+      "name": "Bench",
+      "paragraphs": [
+        "You wake up on the bench.",
+        "What happened last night?"
+      ],
+      "actions": [
+        {
+          "text": "Stand up",
+          "triggers": [
+            {
+              "type": "movement",
+              "target": "scene_2"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "scene_2",
+      "name": "In front of the bench",
+      "paragraphs": [
+        "You rise up slowly and look around.",
+        {
+            "text": "What is that?",
+            "hideIfFlag": "coin_taken"
+        },
+        {
+            "text": "You look at the coin. It's beautiful!",
+            "showIfFlag": "coin_taken"
+        }
+      ],
+      "actions": [
+        {
+          "text": "Take coin",
+          "triggers": [
+            {
+              "type": "add_flag",
+              "target": "coin_taken"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```
 
-### `npm run build`
+## Triggers
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Triggers are stuff that happenes when an action is performed by the player.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Type of triggers:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+#### `movement`
 
-### `npm run eject`
+```
+{
+    "type": "movement",
+    "target": "target_scene",
+    "chapter": "optional_target_chapter"
+}
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+#### `add_flag`
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```
+{
+    "type": "add_flag",
+    "target": "flag_to_add",
+}
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+#### `remove_flag`
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```
+{
+    "type": "add_flag",
+    "target": "flag_to_remove",
+}
+```
 
-## Learn More
+## Scripts
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Install dependencies
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+`npm install`
 
-### Code Splitting
+### Run on localhost:3000
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+`npm start`
 
-### Analyzing the Bundle Size
+### Deploy application with gh-pages
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+`npm run deploy`

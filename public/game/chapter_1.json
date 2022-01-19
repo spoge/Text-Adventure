@@ -11,7 +11,7 @@
       ],
       "actions": [
         {
-          "actionText": "Open your eyes",
+          "text": "Open your eyes",
           "triggers": [
             {
               "type": "movement",
@@ -32,7 +32,7 @@
       ],
       "actions": [
         {
-          "actionText": "Stand up",
+          "text": "Stand up",
           "triggers": [
             {
               "type": "movement",
@@ -59,7 +59,7 @@
       ],
       "actions": [
         {
-          "actionText": "Take sword",
+          "text": "Take sword",
           "hideIfAnyFlag": ["have_sword", "have_food"],
           "triggers": [
             {
@@ -69,7 +69,7 @@
           ]
         },
         {
-          "actionText": "Drop sword",
+          "text": "Drop sword",
           "showIfFlag": "have_sword",
           "triggers": [
             {
@@ -79,7 +79,7 @@
           ]
         },
         {
-          "actionText": "Take bag of food",
+          "text": "Take bag of food",
           "hideIfAnyFlag": ["have_food", "have_sword"],
           "triggers": [
             {
@@ -89,7 +89,7 @@
           ]
         },
         {
-          "actionText": "Drop bag of food",
+          "text": "Drop bag of food",
           "showIfFlag": "have_food",
           "triggers": [
             {
@@ -99,7 +99,7 @@
           ]
         },
         {
-          "actionText": "Go to the upper deck",
+          "text": "Go to the upper deck",
           "showIfAnyFlag": ["have_food", "have_sword"],
           "triggers": [
             {
@@ -123,7 +123,7 @@
       ],
       "actions": [
         {
-          "actionText": "Take plank",
+          "text": "Take plank",
           "hideIfFlag": "have_plank",
           "triggers": [
             {
@@ -133,7 +133,7 @@
           ]
         },
         {
-          "actionText": "Jump overboard with the plank",
+          "text": "Jump overboard with the plank",
           "showIfFlag": "have_plank",
           "triggers": [
             {
