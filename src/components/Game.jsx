@@ -1,99 +1,49 @@
 import { useContext, useEffect, useState } from "react";
-import "./styles/Game.css";
+import "../styles/Game.css";
 import Terminal from "./Terminal";
-import fetchChapter from "../scripts/fetchChapter";
-import shouldShow from "../scripts/flagChecker";
+import isVisible from "../scripts/CheckFlag";
+import dispatchTrigger from "../scripts/DispatchTrigger";
+import fetchChapter from "../scripts/FetchChapter";
 import { GameContext } from "../reducer/GameReducer";
+import HorizontalLine from "./common/HorizontalLine";
+import Paragraphs from "./game/Paragraphs";
+import Actions from "./game/Actions";
+import DebugStats from "./DebugStats";
 
 const Game = () => {
   const { state, dispatch } = useContext(GameContext);
+  const flags = state.flags;
 
   const [chapter, setChapter] = useState({});
+  const scene = chapter?.scenes?.find((l) => l.id === state.sceneId);
+
+  const debug = false;
 
   useEffect(() => {
     fetchChapter(state.chapterId, setChapter);
   }, [state]);
 
-  const flags = state.flags;
-  const scene = chapter?.scenes?.find((l) => l.id === state.sceneId);
-  const debug = false;
-
-  const handleTrigger = (trigger) => {
-    if (
-      trigger === undefined ||
-      trigger.type === undefined ||
-      trigger.target === undefined
-    ) {
-      return;
-    }
-    switch (trigger.type) {
-      case "movement":
-        dispatch({
-          type: "movement",
-          payload: { sceneId: trigger.target, chapterId: trigger.chapterId },
-        });
-        break;
-      case "add_flag":
-        dispatch({ type: "add_flag", payload: trigger.target });
-        break;
-      case "remove_flag":
-        dispatch({ type: "remove_flag", payload: trigger.target });
-        break;
-      default:
-        break;
-    }
-  };
-
-  const handleActionClick = (actionIndex) => {
-    const action = scene.actions.filter((a) => shouldShow(flags, a))[
+  const actionClick = (actionIndex) => {
+    const action = scene.actions.filter((a) => isVisible(flags, a))[
       actionIndex
     ];
-    action.triggers?.forEach((t) => handleTrigger(t));
+    action.triggers?.forEach((trigger) => dispatchTrigger(dispatch, trigger));
   };
 
   return (
     <div className="scene">
       <Terminal>
         <h3 className="scene-name">{scene?.name}</h3>
-        <hr />
-        <div className="paragraphs">
-          {scene?.paragraphs
-            .filter((d) => shouldShow(flags, d))
-            .map((d) => (typeof d === "string" ? d : d.text))
-            .map((paragraph, index) => {
-              if (paragraph === "---") return <hr />;
-              return (
-                <div className="paragraph" key={index}>
-                  {paragraph}
-                </div>
-              );
-            })}
-        </div>
-        {scene?.actions.length > 0 && (
-          <>
-            <hr />
-            <h4 className="label">Actions:</h4>
-          </>
-        )}
-        <div className="actions">
-          {scene?.actions
-            .filter((a) => shouldShow(flags, a))
-            .map((action, index) => (
-              <div
-                className="action text-buzz"
-                key={index}
-                onClick={() => handleActionClick(index)}
-              >
-                {`> ${action.actionText}`}
-              </div>
-            ))}
-        </div>
-        {debug && flags.length > 0 && (
-          <div>
-            <br />
-            Flags: {flags.reduce((r, s) => (r += ", " + s))}
-          </div>
-        )}
+        <HorizontalLine />
+        <Paragraphs flags={flags} paragraphs={scene?.paragraphs} />
+        <HorizontalLine />
+        {scene?.actions.length > 0 && <h4 className="label">Actions:</h4>}
+        <Actions
+          actions={scene?.actions}
+          flags={flags}
+          onActionClick={actionClick}
+        />
+        {debug && <DebugStats flags={flags} />}
       </Terminal>
     </div>
   );

@@ -12,7 +12,7 @@ const showIfAllFlags = (flags, obj) =>
   obj.showIfAllFlags.map((f) => flags.includes(f)).filter((f) => f).length ===
   obj.showIfAllFlags.length;
 
-const shouldShow = (flags, obj) => {
+const isVisible = (flags, obj) => {
   if (obj.hideIfFlag !== undefined && hideIfFlag(flags, obj)) {
     return false;
   }
@@ -34,4 +34,4 @@ const shouldShow = (flags, obj) => {
   return true;
 };
 
-export default shouldShow;
+export default isVisible;
