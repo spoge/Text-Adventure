@@ -1,23 +1,19 @@
-import { isVisible, hasShowFlags, hasShowFlag } from "../../scripts/CheckFlag";
+import {
+  isVisible,
+  hasShowFlags,
+  getActiveShowFlagIndex,
+} from "../../scripts/CheckFlag";
 
 const Paragraphs = ({ flags, paragraphs }) => {
   const sortByShowFlags = (a, b) => {
     if (
-      hasShowFlags(a) &&
       !a.ignoreSortByFlag &&
-      hasShowFlags(b) &&
-      !b.ignoreSortByFlag
+      !b.ignoreSortByFlag &&
+      hasShowFlags(a) &&
+      hasShowFlags(b)
     ) {
-      let ai = flags.length;
-      let bi = flags.length;
-      flags.forEach((f, i) => {
-        if (hasShowFlag(f, a) && ai > i) {
-          ai = i;
-        }
-        if (hasShowFlag(f, b) && bi > i) {
-          bi = i;
-        }
-      });
+      let ai = getActiveShowFlagIndex(flags, a);
+      let bi = getActiveShowFlagIndex(flags, b);
       return ai - bi;
     }
     return 0;
@@ -27,9 +23,9 @@ const Paragraphs = ({ flags, paragraphs }) => {
     <div className="paragraphs">
       {paragraphs &&
         paragraphs
-          .filter((d) => isVisible(flags, d))
+          .filter((p) => isVisible(flags, p))
           .sort(sortByShowFlags)
-          .map((d) => (typeof d === "string" ? d : d.text))
+          .map((p) => (typeof p === "string" ? p : p.text))
           .map((paragraph, index) => {
             if (paragraph === "---") return <hr />;
             return (
