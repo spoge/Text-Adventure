@@ -2,9 +2,21 @@
   "scenes": [
     {
       "id": "forest_1",
-      "name": "Forest",
-      "paragraphs": ["You enter the forest. It's quite mushy."],
+      "name": "Forest - Entrance",
+      "paragraphs": [
+        "You stand just inside the forest entrance. The forest looks quite mushy.",
+        "There's a path that leads forward. It doesn't look very used but it's the only obvious path through the thick forest."
+      ],
       "actions": [
+        {
+          "text": "Follow the path",
+          "triggers": [
+            {
+              "type": "movement",
+              "target": "forest_2"
+            }
+          ]
+        },
         {
           "text": "Go back to the beach",
           "triggers": [
@@ -12,6 +24,68 @@
               "type": "movement",
               "target": "beach_3",
               "chapterId": "chapter_2"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "forest_2",
+      "name": "Forest - Tree stump",
+      "paragraphs": [
+        "After a while you walk across a tree stump.",
+        "You hear a sound from a nearby tree - a critter of some kind?",
+        {
+          "text": "> You put your food on the tree stump. A little squirrel skips around and finally stops on top of the tree stump. It looks at you, takes a bite of your food and runs away. As you pick up your food, you find a coin under it.",
+          "showIfAnyFlagMatches": ["have_coin"]
+        },
+        {
+          "text": "> The coconut is now useless.",
+          "showIfAllFlagsMatches": ["have_coin", "have_opened_coconut"]
+        },
+        {
+          "text": "> You still have some food left.",
+          "showIfAllFlagsMatches": ["have_coin", "have_food"]
+        }
+      ],
+      "actions": [
+        {
+          "text": "Put some food on the stump",
+          "showIfAnyFlagMatches": ["have_food", "have_opened_coconut"],
+          "hideIfAnyFlagMatches": ["have_coin"],
+          "triggers": [{ "type": "add_flag", "target": "have_coin" }]
+        },
+        {
+          "text": "Continue along the path",
+          "triggers": [
+            {
+              "type": "movement",
+              "target": "forest_3"
+            }
+          ]
+        },
+        {
+          "text": "Go back towards the beach",
+          "triggers": [
+            {
+              "type": "movement",
+              "target": "forest_1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "forest_3",
+      "name": "Forest - Deep",
+      "paragraphs": ["The forest gets really thick."],
+      "actions": [
+        {
+          "text": "Go back towards the tree stump",
+          "triggers": [
+            {
+              "type": "movement",
+              "target": "forest_2"
             }
           ]
         }
