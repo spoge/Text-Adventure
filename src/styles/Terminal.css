@@ -75,8 +75,9 @@
   user-select: none; /* Standard */
 }
 
-.text-buzz:hover {
+.selected {
   color: black;
+  background-color: #5bf870;
   animation: textShadowLess 1.6s infinite;
 }
 
