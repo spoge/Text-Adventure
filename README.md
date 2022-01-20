@@ -1,12 +1,12 @@
 # Sboge - Text Adventure
 
-The goal of this project is to create a simple text adventure in React, where the entire adventure is stored in json. These files are static and will not be changed.
+The goal of this project is to create a simple text adventure in React, where the entire adventure is stored in json. These files are static and immutable.
 
 The game only saves three things:
 
 - Current Chapter
 - Current Scene
-- Flags ()
+- Flags (stored globally and can be accessed from any chapter or scene)
 
 ## About
 
