@@ -48,36 +48,36 @@
         "Indeed, there is a forest here.",
         {
           "text": "Just at the entrance there's a palm tree with a coconut.",
-          "hideIfFlag": "have_opened_coconut"
+          "hideIfAnyFlagMatches": ["have_opened_coconut"]
         },
         {
           "text": "Just at the entrance there's a palm tree.",
-          "showIfFlag": "have_opened_coconut",
+          "showIfAnyFlagMatches": ["have_opened_coconut"],
           "ignoreSortByFlag": true
         },
         {
           "text": "If only you had something that could chop it down.",
-          "showIfFlag": "have_food",
-          "hideIfAnyFlag": ["have_sword", "chopped_down_palm_tree"]
+          "showIfAnyFlagMatches": ["have_food"],
+          "hideIfAnyFlagMatches": ["have_sword", "chopped_down_palm_tree"]
         },
         {
           "text": "> You punch the palm tree. It really hurt. You're quite sure that you shouldn't do that again.",
-          "showIfFlag": "punched_palm_tree"
+          "showIfAnyFlagMatches": ["punched_palm_tree"]
         },
         {
           "text": "> Did you really punch the palm tree again? You start bleeding.",
-          "showIfFlag": "punched_palm_tree_again"
+          "showIfAnyFlagMatches": ["punched_palm_tree_again"]
         },
         {
           "text": "> You chop down the palm tree.",
-          "showIfFlag": "chopped_down_palm_tree"
+          "showIfAnyFlagMatches": ["chopped_down_palm_tree"]
         }
       ],
       "actions": [
         {
           "text": "Chop down palm tree",
-          "showIfFlag": "have_sword",
-          "hideIfFlag": "chopped_down_palm_tree",
+          "showIfAnyFlagMatches": ["have_sword"],
+          "hideIfAnyFlagMatches": ["chopped_down_palm_tree"],
           "triggers": [
             {
               "type": "add_flag",
@@ -87,7 +87,7 @@
         },
         {
           "text": "Inspect felled palm tree",
-          "showIfFlag": "chopped_down_palm_tree",
+          "showIfAnyFlagMatches": ["chopped_down_palm_tree"],
           "triggers": [
             {
               "type": "movement",
@@ -97,7 +97,10 @@
         },
         {
           "text": "Punch tree",
-          "hideIfAnyFlag": ["punched_palm_tree", "chopped_down_palm_tree"],
+          "hideIfAnyFlagMatches": [
+            "punched_palm_tree",
+            "chopped_down_palm_tree"
+          ],
           "triggers": [
             {
               "type": "add_flag",
@@ -107,8 +110,8 @@
         },
         {
           "text": "Punch tree again",
-          "showIfFlag": "punched_palm_tree",
-          "hideIfAnyFlag": [
+          "showIfAnyFlagMatches": ["punched_palm_tree"],
+          "hideIfAnyFlagMatches": [
             "chopped_down_palm_tree",
             "punched_palm_tree_again"
           ],
@@ -140,22 +143,22 @@
         "But you're also convinced that your sword will break in the process.",
         {
           "text": "> Your sword breaks. But you now have an opened coconut. It smells juicy.",
-          "showIfFlag": "have_opened_coconut"
+          "showIfAnyFlagMatches": ["have_opened_coconut"]
         },
         {
           "text": "> You take the coconut. Maybe you will find something that can open it later?",
-          "showIfFlag": "have_coconut"
+          "showIfAnyFlagMatches": ["have_coconut"]
         },
         {
           "text": "> You said a prayer to the fallen palm tree.",
-          "showIfFlag": "prayed_for_palm_tree"
+          "showIfAnyFlagMatches": ["prayed_for_palm_tree"]
         }
       ],
       "actions": [
         {
           "text": "Open coconut [sword will break]",
-          "showIfFlags": "have_sword",
-          "hideIfFlag": "have_opened_coconut",
+          "showIfAnyFlagMatchess": ["have_sword"],
+          "hideIfAnyFlagMatches": ["have_opened_coconut"],
           "triggers": [
             {
               "type": "add_flag",
@@ -169,7 +172,7 @@
         },
         {
           "text": "Pray to the fallen palm tree",
-          "hideIfFlag": "prayed_for_palm_tree",
+          "hideIfAnyFlagMatches": ["prayed_for_palm_tree"],
           "triggers": [
             {
               "type": "add_flag",
