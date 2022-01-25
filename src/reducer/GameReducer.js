@@ -19,6 +19,8 @@ const GameReducer = (state, action) => {
       };
     case "add_flag":
       return { ...state, flags: [...state.flags, action.payload] };
+    case "remove_all_flags":
+      return { ...state, flags: [] };
     default:
       return state;
   }

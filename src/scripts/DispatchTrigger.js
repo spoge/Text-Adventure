@@ -19,6 +19,9 @@ const dispatchTrigger = (dispatch, trigger) => {
     case "remove_flag":
       dispatch({ type: "remove_flag", payload: trigger.target });
       break;
+    case "remove_all_flags":
+      dispatch({ type: "remove_all_flags" });
+      break;
     default:
       break;
   }

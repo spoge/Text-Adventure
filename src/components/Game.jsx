@@ -21,7 +21,7 @@ const Game = () => {
   const flags = state.flags;
   const scene = chapter?.scenes?.find((l) => l.id === state.sceneId);
   const availableActions = scene?.actions?.filter((a) => isVisible(flags, a));
-  const debug = false;
+  const [debug, setDebug] = useState(false);
 
   useEffect(() => {
     fetchChapter(state.chapterId, setChapter);
@@ -37,19 +37,19 @@ const Game = () => {
   };
 
   const handleKeyDown = (e) => {
+    if (e.defaultPrevented) return;
     switch (e.key) {
       case "Enter":
-        e.preventDefault();
         actionClick(selectedIndex);
         break;
+      case "Up":
       case "ArrowUp":
-        e.preventDefault();
         if (selectedIndex - 1 >= 0) {
           setSelectedIndex(selectedIndex - 1);
         }
         break;
+      case "Down":
       case "ArrowDown":
-        e.preventDefault();
         if (
           scene !== undefined &&
           selectedIndex + 1 < availableActions.length
@@ -57,9 +57,25 @@ const Game = () => {
           setSelectedIndex(selectedIndex + 1);
         }
         break;
+
+      // debug shortcuts
+      case "C":
+        dispatch({ type: "remove_all_flags" });
+        break;
+      case "D":
+        setDebug(!debug);
+        break;
+      case "N":
+        dispatchTrigger(dispatch, {
+          type: "movement",
+          target: "shipwreck_1",
+          chapterId: "chapter_1",
+        });
+        break;
       default:
         break;
     }
+    e.preventDefault();
   };
 
   return (
