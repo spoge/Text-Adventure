@@ -56,12 +56,11 @@
           "ignoreSortByFlag": true
         },
         {
-          "text": "If only you had something that could chop it down.",
-          "showIfAnyFlagMatches": ["have_food"],
-          "hideIfAnyFlagMatches": ["have_sword", "chopped_down_palm_tree"]
+          "text": "If only you had something that could fell the tree.",
+          "showIfAnyFlagMatches": ["choose_food"]
         },
         {
-          "text": "> You punch the palm tree. It really hurt. You're quite sure that you shouldn't do that again.",
+          "text": "> You punch the palm tree. It really hurt. You're quite sure that you shouldn't do that again unless you suddenly become a lot stronger.",
           "showIfAnyFlagMatches": ["punched_palm_tree"]
         },
         {
@@ -69,25 +68,29 @@
           "showIfAnyFlagMatches": ["punched_palm_tree_again"]
         },
         {
-          "text": "> You chop down the palm tree.",
-          "showIfAnyFlagMatches": ["chopped_down_palm_tree"]
+          "text": "> You felled the palm tree with your sword.",
+          "showIfAllFlagsMatches": ["felled_palm_tree", "choose_sword"]
+        },
+        {
+          "text": "> You felled the palm tree with a mighty punch.",
+          "showIfAllFlagsMatches": ["felled_palm_tree", "choose_food"]
         }
       ],
       "actions": [
         {
           "text": "Chop down palm tree",
           "showIfAnyFlagMatches": ["have_sword"],
-          "hideIfAnyFlagMatches": ["chopped_down_palm_tree"],
+          "hideIfAnyFlagMatches": ["felled_palm_tree"],
           "triggers": [
             {
               "type": "add_flag",
-              "target": "chopped_down_palm_tree"
+              "target": "felled_palm_tree"
             }
           ]
         },
         {
           "text": "Inspect felled palm tree",
-          "showIfAnyFlagMatches": ["chopped_down_palm_tree"],
+          "showIfAnyFlagMatches": ["felled_palm_tree"],
           "triggers": [
             {
               "type": "movement",
@@ -97,10 +100,7 @@
         },
         {
           "text": "Punch tree",
-          "hideIfAnyFlagMatches": [
-            "punched_palm_tree",
-            "chopped_down_palm_tree"
-          ],
+          "hideIfAnyFlagMatches": ["punched_palm_tree", "felled_palm_tree"],
           "triggers": [
             {
               "type": "add_flag",
@@ -109,10 +109,25 @@
           ]
         },
         {
+          "text": "Drink potion, then punch the palm tree",
+          "showIfAnyFlagMatches": ["have_strength_potion"],
+          "hideIfAnyFlagMatches": ["felled_palm_tree"],
+          "triggers": [
+            {
+              "type": "add_flag",
+              "target": "felled_palm_tree"
+            },
+            {
+              "type": "remove_flag",
+              "target": "have_strength_potion"
+            }
+          ]
+        },
+        {
           "text": "Punch tree again",
           "showIfAnyFlagMatches": ["punched_palm_tree"],
           "hideIfAnyFlagMatches": [
-            "chopped_down_palm_tree",
+            "felled_palm_tree",
             "punched_palm_tree_again"
           ],
           "triggers": [
@@ -143,11 +158,11 @@
         "But you're also convinced that your sword will break in the process.",
         {
           "text": "> Your sword breaks. But you now have an opened coconut. It smells juicy.",
-          "showIfAnyFlagMatches": ["have_opened_coconut"]
+          "showIfAllFlagMatches": ["have_opened_coconut", "choose_sword"]
         },
         {
-          "text": "> You take the coconut. Maybe you will find something that can open it later?",
-          "showIfAnyFlagMatches": ["have_coconut"]
+          "text": "> The potion wear out. But you now have an opened coconut. It smells juicy.",
+          "showIfAllFlagMatches": ["have_opened_coconut", "choose_food"]
         },
         {
           "text": "> You said a prayer to the fallen palm tree.",
@@ -157,7 +172,7 @@
       "actions": [
         {
           "text": "Open coconut [sword will break]",
-          "showIfAnyFlagMatchess": ["have_sword"],
+          "showIfAnyFlagMatches": ["have_sword"],
           "hideIfAnyFlagMatches": ["have_opened_coconut"],
           "triggers": [
             {
@@ -167,6 +182,21 @@
             {
               "type": "remove_flag",
               "target": "have_sword"
+            }
+          ]
+        },
+        {
+          "text": "Open coconut with your fist",
+          "showIfAnyFlagMatches": ["have_strength_potion"],
+          "hideIfAnyFlagMatches": ["have_opened_coconut"],
+          "triggers": [
+            {
+              "type": "add_flag",
+              "target": "have_opened_coconut"
+            },
+            {
+              "type": "remove_flag",
+              "target": "have_strength_potion"
             }
           ]
         },
