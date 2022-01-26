@@ -31,7 +31,7 @@
     },
     {
       "id": "forest_2",
-      "name": "Forest - Tree stump",
+      "name": "Forest - Tree Stump",
       "paragraphs": [
         "After a while you walk across a tree stump.",
         "You hear a sound from a nearby tree - a small critter of some kind?",
@@ -105,7 +105,7 @@
     },
     {
       "id": "forest_3",
-      "name": "Forest - Deep",
+      "name": "Forest - Deep Woods",
       "paragraphs": [
         "The forest gets really thick.",
         "You make out a medium sized rock in front of you.",
@@ -218,19 +218,33 @@
           "showIfAnyFlagMatches": ["village_entrance_convince_guard_fail"]
         },
         {
-          "text": "> You try to bribe him with the potion. \"I don't want that. I want permit.\"",
+          "text": "> You try to bribe him with the potion. \"I don't want shady looking thing. I want permit.\"",
           "showIfAnyFlagMatches": [
             "village_entrance_convince_guard_fail_potion"
           ]
         },
         {
-          "text": "> You show the permit to the guard. \"A permit, a entry.\"",
+          "text": "> You try to bribe him with the opened coconut. \"I don't want icky coconut. I want permit.\"",
+          "showIfAnyFlagMatches": [
+            "village_entrance_convince_guard_fail_coconut"
+          ]
+        },
+        {
+          "text": "> You try to bribe him with your food. \"I am full. I want permit.\"",
+          "showIfAnyFlagMatches": ["village_entrance_convince_guard_fail_food"]
+        },
+        {
+          "text": "> You try to bribe him with your sword. \"I have better sword. I want permit.\"",
+          "showIfAnyFlagMatches": ["village_entrance_convince_guard_fail_sword"]
+        },
+        {
+          "text": "> You show the permit to the guard. \"One permit, one entry.\"",
           "showIfAnyFlagMatches": ["village_entrance_convince_guard_success"]
         }
       ],
       "actions": [
         {
-          "text": "Convince him to let you enter",
+          "text": "Convince guard to let you enter",
           "hideIfAnyFlagMatches": ["village_entrance_convince_guard_fail"],
           "triggers": [
             {
@@ -240,7 +254,7 @@
           ]
         },
         {
-          "text": "Try to bribe him with the potion",
+          "text": "Bribe guard with potion",
           "showIfAllFlagsMatches": [
             "have_strength_potion",
             "village_entrance_convince_guard_fail"
@@ -252,6 +266,52 @@
             {
               "type": "add_flag",
               "target": "village_entrance_convince_guard_fail_potion"
+            }
+          ]
+        },
+        {
+          "text": "Bribe guard with food",
+          "showIfAllFlagsMatches": [
+            "have_food",
+            "village_entrance_convince_guard_fail"
+          ],
+          "hideIfAnyFlagMatches": ["village_entrance_convince_guard_fail_food"],
+          "triggers": [
+            {
+              "type": "add_flag",
+              "target": "village_entrance_convince_guard_fail_food"
+            }
+          ]
+        },
+        {
+          "text": "Bribe guard with sword",
+          "showIfAllFlagsMatches": [
+            "have_sword",
+            "village_entrance_convince_guard_fail"
+          ],
+          "hideIfAnyFlagMatches": [
+            "village_entrance_convince_guard_fail_sword"
+          ],
+          "triggers": [
+            {
+              "type": "add_flag",
+              "target": "village_entrance_convince_guard_fail_sword"
+            }
+          ]
+        },
+        {
+          "text": "Bribe guard with opened coconut",
+          "showIfAllFlagsMatches": [
+            "have_opened_coconut",
+            "village_entrance_convince_guard_fail"
+          ],
+          "hideIfAnyFlagMatches": [
+            "village_entrance_convince_guard_fail_coconut"
+          ],
+          "triggers": [
+            {
+              "type": "add_flag",
+              "target": "village_entrance_convince_guard_fail_coconut"
             }
           ]
         },
@@ -278,7 +338,7 @@
           ]
         },
         {
-          "text": "Go back into the forrest",
+          "text": "Go back into the forest",
           "triggers": [
             {
               "type": "movement",
