@@ -11,6 +11,7 @@ import Actions from "./game/Actions";
 import DebugStats from "./DebugStats";
 import Title from "./common/Title";
 import SmallTitle from "./common/SmallTitle";
+import DebugHelp from "./DebugHelp";
 
 const Game = () => {
   const { state, dispatch } = useContext(GameContext);
@@ -22,6 +23,7 @@ const Game = () => {
   const scene = chapter?.scenes?.find((l) => l.id === state.sceneId);
   const availableActions = scene?.actions?.filter((a) => isVisible(flags, a));
   const [debug, setDebug] = useState(false);
+  const [debugHelp, setDebugHelp] = useState(false);
 
   useEffect(() => {
     fetchChapter(state.chapterId, setChapter);
@@ -65,6 +67,9 @@ const Game = () => {
       case "D":
         setDebug(!debug);
         break;
+      case "H":
+        setDebugHelp(!debugHelp);
+        break;
       case "N":
         dispatchTrigger(dispatch, {
           type: "movement",
@@ -75,7 +80,6 @@ const Game = () => {
       default:
         break;
     }
-    e.preventDefault();
   };
 
   return (
@@ -93,6 +97,7 @@ const Game = () => {
           selectedIndex={selectedIndex}
           setSelectedIndex={setSelectedIndex}
         />
+        {debugHelp && <DebugHelp />}
         {debug && <DebugStats flags={flags} />}
       </Terminal>
     </div>
