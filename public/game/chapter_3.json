@@ -231,10 +231,7 @@
       "actions": [
         {
           "text": "Convince him to let you enter",
-          "hideIfAnyFlagMatches": [
-            "have_permit",
-            "village_entrance_convince_guard_fail"
-          ],
+          "hideIfAnyFlagMatches": ["village_entrance_convince_guard_fail"],
           "triggers": [
             {
               "type": "add_flag",
