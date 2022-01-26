@@ -34,26 +34,54 @@
       "name": "Forest - Tree stump",
       "paragraphs": [
         "After a while you walk across a tree stump.",
-        "You hear a sound from a nearby tree - a critter of some kind?",
+        "You hear a sound from a nearby tree - a small critter of some kind?",
         {
-          "text": "> You put your food on the tree stump. A little squirrel skips around and finally stops on top of the tree stump. It looks at you, takes a bite of your food and runs away. As you pick up your food, you find a coin under it.",
-          "showIfAnyFlagMatches": ["have_coin"]
+          "text": "> You put your food on the tree stump. A little squirrel appears, grabs the bag and runs off. It left behind something that looks like a potion vial.",
+          "showIfAnyFlagMatches": ["gave_squirrel_food"]
         },
         {
-          "text": "> The coconut is now useless.",
-          "showIfAllFlagsMatches": ["have_coin", "have_opened_coconut"]
+          "text": "> You put the coconut on the tree stump. A little squirrel jumps up and carries the coconut away. You find a piece of paper on the tree stump.",
+          "showIfAnyFlagMatches": ["gave_squirrel_coconut"]
         },
         {
-          "text": "> You still have some food left.",
-          "showIfAllFlagsMatches": ["have_coin", "have_food"]
+          "text": "> You pick up the potion of strength(?).",
+          "showIfAnyFlagMatches": ["have_strength_potion"]
+        },
+        {
+          "text": "> You pick up the paper. It seems to actually be an entry permit to a nearby village.",
+          "showIfAnyFlagMatches": ["have_permit"]
         }
       ],
       "actions": [
         {
-          "text": "Put some food on the stump",
-          "showIfAnyFlagMatches": ["have_food", "have_opened_coconut"],
-          "hideIfAnyFlagMatches": ["have_coin"],
-          "triggers": [{ "type": "add_flag", "target": "have_coin" }]
+          "text": "Put food on the stump",
+          "showIfAnyFlagMatches": ["have_food"],
+          "hideIfAnyFlagMatches": ["gave_squirrel_food"],
+          "triggers": [
+            { "type": "add_flag", "target": "gave_squirrel_food" },
+            { "type": "remove_flag", "target": "have_food" }
+          ]
+        },
+        {
+          "text": "Pick up the potion",
+          "showIfAnyFlagMatches": ["gave_squirrel_food"],
+          "hideIfAnyFlagMatches": ["have_strength_potion"],
+          "triggers": [{ "type": "add_flag", "target": "have_strength_potion" }]
+        },
+        {
+          "text": "Put the coconut on the stump",
+          "showIfAnyFlagMatches": ["have_opened_coconut"],
+          "hideIfAnyFlagMatches": ["gave_squirrel_coconut"],
+          "triggers": [
+            { "type": "add_flag", "target": "gave_squirrel_coconut" },
+            { "type": "remove_flag", "target": "have_opened_coconut" }
+          ]
+        },
+        {
+          "text": "Pick up the piece of paper",
+          "showIfAnyFlagMatches": ["gave_squirrel_coconut"],
+          "hideIfAnyFlagMatches": ["have_permit"],
+          "triggers": [{ "type": "add_flag", "target": "have_permit" }]
         },
         {
           "text": "Continue along the path",
@@ -78,14 +106,186 @@
     {
       "id": "forest_3",
       "name": "Forest - Deep",
-      "paragraphs": ["The forest gets really thick."],
+      "paragraphs": [
+        "The forest gets really thick.",
+        "You make out a medium sized rock in front of you.",
+        "When you look closer you discover a skeleton.",
+        "It lies still and is not moving - yet."
+      ],
       "actions": [
+        {
+          "text": "Inspect skeleton",
+          "triggers": [
+            {
+              "type": "movement",
+              "target": "forest_3_skeleton"
+            }
+          ]
+        },
+        {
+          "text": "Continue along the path",
+          "triggers": [
+            {
+              "type": "movement",
+              "target": "forest_4"
+            }
+          ]
+        },
         {
           "text": "Go back towards the tree stump",
           "triggers": [
             {
               "type": "movement",
               "target": "forest_2"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "forest_3_skeleton",
+      "name": "Forest - Skeleton",
+      "paragraphs": [
+        "A poor soul ended their journey here many years ago.",
+        "There's a bag at the side of the skeleton."
+      ],
+      "actions": [
+        {
+          "text": "Inspect bag",
+          "triggers": [
+            {
+              "type": "movement",
+              "target": "forest_3_skeleton_bag"
+            }
+          ]
+        },
+        {
+          "text": "Step away from the skeleton",
+          "triggers": [
+            {
+              "type": "movement",
+              "target": "forest_3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "forest_3_skeleton_bag",
+      "name": "Forest - Skeleton's Bag",
+      "paragraphs": [
+        "In the bag you find a journal.",
+        {
+          "text": "\"I didn't intend for it to end here. After all these years. After finally creating a potion of super strength, and acquiring the permit to enter the village. That annoying squirrel is taunting me. It will just end here...\"",
+          "showIfAllFlagsMatches": ["read_skeleton_journal", "choose_food"]
+        },
+        {
+          "text": "\"I didn't intend for it to end here. After all these years. After finally acquiring that permit to enter the village. That annoying squirrel is taunting me. It will just end here...\"",
+          "showIfAllFlagsMatches": ["read_skeleton_journal", "choose_sword"]
+        }
+      ],
+      "actions": [
+        {
+          "text": "Read journal",
+          "hideIfAnyFlagMatches": ["read_skeleton_journal"],
+          "triggers": [
+            {
+              "type": "add_flag",
+              "target": "read_skeleton_journal"
+            }
+          ]
+        },
+        {
+          "text": "Close the bag",
+          "triggers": [
+            {
+              "type": "movement",
+              "target": "forest_3_skeleton"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "forest_4",
+      "name": "Forest - Village Entrance",
+      "paragraphs": [
+        "You reach the entrance to a village.",
+        "There's a guard in front of the gate.",
+        "He looks kinda grumpy.",
+        {
+          "text": "> You try to convince him to let you enter. But he simply says: \"No permit, no entry.\"",
+          "showIfAnyFlagMatches": ["village_entrance_convince_guard_fail"]
+        },
+        {
+          "text": "> You try to bribe him with the potion. \"I don't want that. I want permit.\"",
+          "showIfAnyFlagMatches": [
+            "village_entrance_convince_guard_fail_potion"
+          ]
+        },
+        {
+          "text": "> You show the permit to the guard. \"A permit, a entry.\"",
+          "showIfAnyFlagMatches": ["village_entrance_convince_guard_success"]
+        }
+      ],
+      "actions": [
+        {
+          "text": "Convince him to let you enter",
+          "hideIfAnyFlagMatches": [
+            "have_permit",
+            "village_entrance_convince_guard_fail"
+          ],
+          "triggers": [
+            {
+              "type": "add_flag",
+              "target": "village_entrance_convince_guard_fail"
+            }
+          ]
+        },
+        {
+          "text": "Try to bribe him with the potion",
+          "showIfAllFlagsMatches": [
+            "have_strength_potion",
+            "village_entrance_convince_guard_fail"
+          ],
+          "hideIfAnyFlagMatches": [
+            "village_entrance_convince_guard_fail_potion"
+          ],
+          "triggers": [
+            {
+              "type": "add_flag",
+              "target": "village_entrance_convince_guard_fail_potion"
+            }
+          ]
+        },
+        {
+          "text": "Show the permit to the guard",
+          "showIfAnyFlagMatches": ["have_permit"],
+          "hideIfAnyFlagMatches": ["village_entrance_convince_guard_success"],
+          "triggers": [
+            {
+              "type": "add_flag",
+              "target": "village_entrance_convince_guard_success"
+            }
+          ]
+        },
+        {
+          "text": "Enter village",
+          "showIfAnyFlagMatches": ["village_entrance_convince_guard_success"],
+          "triggers": [
+            {
+              "type": "movement",
+              "target": "village_1",
+              "chapterId": "chapter_4"
+            }
+          ]
+        },
+        {
+          "text": "Go back into the forrest",
+          "triggers": [
+            {
+              "type": "movement",
+              "target": "forest_3"
             }
           ]
         }

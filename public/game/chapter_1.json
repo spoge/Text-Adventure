@@ -65,6 +65,10 @@
             {
               "type": "add_flag",
               "target": "have_sword"
+            },
+            {
+              "type": "add_flag",
+              "target": "choose_sword"
             }
           ]
         },
@@ -75,6 +79,10 @@
             {
               "type": "remove_flag",
               "target": "have_sword"
+            },
+            {
+              "type": "remove_flag",
+              "target": "choose_sword"
             }
           ]
         },
@@ -85,6 +93,10 @@
             {
               "type": "add_flag",
               "target": "have_food"
+            },
+            {
+              "type": "add_flag",
+              "target": "choose_food"
             }
           ]
         },
@@ -95,6 +107,10 @@
             {
               "type": "remove_flag",
               "target": "have_food"
+            },
+            {
+              "type": "remove_flag",
+              "target": "choose_food"
             }
           ]
         },
@@ -136,6 +152,10 @@
           "text": "Jump overboard with the plank",
           "showIfAnyFlagMatches": ["have_plank"],
           "triggers": [
+            {
+              "type": "remove_flag",
+              "target": "have_plank"
+            },
             {
               "type": "movement",
               "target": "beach_1",

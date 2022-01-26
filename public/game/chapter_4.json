@@ -1,0 +1,24 @@
+{
+  "scenes": [
+    {
+      "id": "village_1",
+      "name": "Village - Entrance",
+      "paragraphs": [
+        "You enter the village. It looks quite nice!",
+        "If only you could do something here..."
+      ],
+      "actions": [
+        {
+          "text": "Go back to forest entrance",
+          "triggers": [
+            {
+              "type": "movement",
+              "target": "forest_4",
+              "chapterId": "chapter_3"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
