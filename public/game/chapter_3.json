@@ -308,7 +308,8 @@
         {
           "text": "Convince guard to let you enter",
           "hideIfAnyFlagMatches": [
-            "village_entrance_convince_guard_fail"
+            "village_entrance_convince_guard_fail",
+            "village_entrance_convince_guard_success"
           ],
           "triggers": [
             {
@@ -324,7 +325,8 @@
             "village_entrance_convince_guard_fail"
           ],
           "hideIfAnyFlagMatches": [
-            "village_entrance_convince_guard_fail_potion"
+            "village_entrance_convince_guard_fail_potion",
+            "village_entrance_convince_guard_success"
           ],
           "triggers": [
             {
@@ -340,7 +342,8 @@
             "village_entrance_convince_guard_fail"
           ],
           "hideIfAnyFlagMatches": [
-            "village_entrance_convince_guard_fail_food"
+            "village_entrance_convince_guard_fail_food",
+            "village_entrance_convince_guard_success"
           ],
           "triggers": [
             {
@@ -356,7 +359,8 @@
             "village_entrance_convince_guard_fail"
           ],
           "hideIfAnyFlagMatches": [
-            "village_entrance_convince_guard_fail_sword"
+            "village_entrance_convince_guard_fail_sword",
+            "village_entrance_convince_guard_success"
           ],
           "triggers": [
             {
@@ -372,7 +376,8 @@
             "village_entrance_convince_guard_fail"
           ],
           "hideIfAnyFlagMatches": [
-            "village_entrance_convince_guard_fail_coconut"
+            "village_entrance_convince_guard_fail_coconut",
+            "village_entrance_convince_guard_success"
           ],
           "triggers": [
             {
