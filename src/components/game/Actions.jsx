@@ -1,12 +1,14 @@
-import { isVisible } from "../../scripts/CheckFlag";
+import { useContext } from "react";
 
-const Actions = ({
-  actions,
-  flags,
-  onActionClick,
-  selectedIndex,
-  setSelectedIndex,
-}) => {
+import { isVisible } from "../../scripts/CheckFlag";
+import GameContext from "../GameContext";
+
+const Actions = ({ actions, onActionClick }) => {
+  const { saveState, instanceState, instanceDispatch } =
+    useContext(GameContext);
+
+  const flags = saveState.flags;
+
   return (
     <div className="actions">
       {actions &&
@@ -14,10 +16,17 @@ const Actions = ({
           .filter((a) => isVisible(flags, a))
           .map((action, index) => (
             <div
-              className={`action ${selectedIndex === index ? "selected" : ""}`}
+              className={`action ${
+                instanceState.selectedIndex === index ? "selected" : ""
+              }`}
               key={index}
               onClick={() => onActionClick(index)}
-              onMouseEnter={() => setSelectedIndex(index)}
+              onMouseEnter={() =>
+                instanceDispatch({
+                  type: "set_selected_index",
+                  payload: index,
+                })
+              }
             >
               {`> ${action.text}`}
             </div>

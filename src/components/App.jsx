@@ -1,24 +1,40 @@
 import React, { useReducer, useMemo } from "react";
 import "../styles/App.css";
 import Game from "./Game";
-import { GameContext, GameReducer } from "../reducer/GameReducer";
+import { GameSaveReducer } from "../reducer/GameSaveReducer";
+import { GameInstanceReducer } from "../reducer/GameInstanceReducer";
+import GameContext from "./GameContext";
 
-const initialState = {
+const initialSaveState = {
   chapterId: "chapter_1",
   sceneId: "shipwreck_1",
   flags: [],
 };
 
-const App = () => {
-  const [state, dispatch] = useReducer(GameReducer, initialState);
+const initialInstanceState = {
+  selectedIndex: 0,
+  debugMode: false,
+  debugHelp: false,
+};
 
-  const contextValue = useMemo(() => {
-    return { state, dispatch };
-  }, [state, dispatch]);
+const App = () => {
+  const [saveState, saveDispatch] = useReducer(
+    GameSaveReducer,
+    initialSaveState
+  );
+
+  const [instanceState, instanceDispatch] = useReducer(
+    GameInstanceReducer,
+    initialInstanceState
+  );
+
+  const contextValues = useMemo(() => {
+    return { saveState, saveDispatch, instanceState, instanceDispatch };
+  }, [saveState, saveDispatch, instanceState, instanceDispatch]);
 
   return (
     <div className="app">
-      <GameContext.Provider value={contextValue}>
+      <GameContext.Provider value={contextValues}>
         <Game />
       </GameContext.Provider>
     </div>

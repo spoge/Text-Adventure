@@ -1,7 +1,6 @@
 import React from "react";
 
-const GameContext = React.createContext();
-const GameReducer = (state, action) => {
+const GameSaveReducer = (state, action) => {
   switch (action.type) {
     case "movement":
       return {
@@ -26,4 +25,4 @@ const GameReducer = (state, action) => {
   }
 };
 
-export { GameContext, GameReducer };
+export { GameSaveReducer };
