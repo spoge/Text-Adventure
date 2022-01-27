@@ -37,38 +37,26 @@
         "You hear a sound from a nearby tree - a small critter of some kind?",
         {
           "text": "> You put your food on the tree stump. A little squirrel appears, grabs the bag and runs off. It left behind something that looks like a potion vial.",
-          "showIfAnyFlagMatches": [
-            "gave_squirrel_food"
-          ]
+          "showIfAnyFlagMatches": ["gave_squirrel_food"]
         },
         {
           "text": "> You put the coconut on the tree stump. A little squirrel jumps up and carries the coconut away. You find a piece of paper on the tree stump.",
-          "showIfAnyFlagMatches": [
-            "gave_squirrel_coconut"
-          ]
+          "showIfAnyFlagMatches": ["gave_squirrel_coconut"]
         },
         {
           "text": "> You pick up the potion of strength(?).",
-          "showIfAnyFlagMatches": [
-            "have_strength_potion"
-          ]
+          "showIfAnyFlagMatches": ["have_strength_potion"]
         },
         {
           "text": "> You pick up the paper. It seems to actually be an entry permit to a nearby village.",
-          "showIfAnyFlagMatches": [
-            "have_permit"
-          ]
+          "showIfAnyFlagMatches": ["have_permit"]
         }
       ],
       "actions": [
         {
           "text": "Put food on the stump",
-          "showIfAnyFlagMatches": [
-            "have_food"
-          ],
-          "hideIfAnyFlagMatches": [
-            "gave_squirrel_food"
-          ],
+          "showIfAnyFlagMatches": ["have_food"],
+          "hideIfAnyFlagMatches": ["gave_squirrel_food"],
           "triggers": [
             {
               "type": "add_flag",
@@ -82,27 +70,23 @@
         },
         {
           "text": "Pick up the potion",
-          "showIfAnyFlagMatches": [
-            "gave_squirrel_food"
-          ],
-          "hideIfAnyFlagMatches": [
-            "have_strength_potion"
-          ],
+          "showIfAnyFlagMatches": ["gave_squirrel_food"],
+          "hideIfAnyFlagMatches": ["took_strength_potion"],
           "triggers": [
             {
               "type": "add_flag",
               "target": "have_strength_potion"
+            },
+            {
+              "type": "add_flag",
+              "target": "took_strength_potion"
             }
           ]
         },
         {
           "text": "Put the coconut on the stump",
-          "showIfAnyFlagMatches": [
-            "have_opened_coconut"
-          ],
-          "hideIfAnyFlagMatches": [
-            "gave_squirrel_coconut"
-          ],
+          "showIfAnyFlagMatches": ["have_opened_coconut"],
+          "hideIfAnyFlagMatches": ["gave_squirrel_coconut"],
           "triggers": [
             {
               "type": "add_flag",
@@ -116,12 +100,8 @@
         },
         {
           "text": "Pick up the piece of paper",
-          "showIfAnyFlagMatches": [
-            "gave_squirrel_coconut"
-          ],
-          "hideIfAnyFlagMatches": [
-            "have_permit"
-          ],
+          "showIfAnyFlagMatches": ["gave_squirrel_coconut"],
+          "hideIfAnyFlagMatches": ["have_permit"],
           "triggers": [
             {
               "type": "add_flag",
@@ -223,25 +203,17 @@
         "In the bag you find a journal.",
         {
           "text": "\"I didn't intend for it to end here. After all these years. After finally creating a potion of super strength, and acquiring the permit to enter the village. That annoying squirrel is taunting me. It will just end here...\"",
-          "showIfAllFlagsMatches": [
-            "read_skeleton_journal",
-            "choose_food"
-          ]
+          "showIfAllFlagsMatches": ["read_skeleton_journal", "choose_food"]
         },
         {
           "text": "\"I didn't intend for it to end here. After all these years. After finally acquiring that permit to enter the village. That annoying squirrel is taunting me. It will just end here...\"",
-          "showIfAllFlagsMatches": [
-            "read_skeleton_journal",
-            "choose_sword"
-          ]
+          "showIfAllFlagsMatches": ["read_skeleton_journal", "choose_sword"]
         }
       ],
       "actions": [
         {
           "text": "Read journal",
-          "hideIfAnyFlagMatches": [
-            "read_skeleton_journal"
-          ],
+          "hideIfAnyFlagMatches": ["read_skeleton_journal"],
           "triggers": [
             {
               "type": "add_flag",
@@ -269,9 +241,7 @@
         "He looks kinda grumpy.",
         {
           "text": "> You try to convince him to let you enter. But he simply says: \"No permit, no entry.\"",
-          "showIfAnyFlagMatches": [
-            "village_entrance_convince_guard_fail"
-          ]
+          "showIfAnyFlagMatches": ["village_entrance_convince_guard_fail"]
         },
         {
           "text": "> You try to bribe him with the potion. \"I don't want shady looking thing. I want permit.\"",
@@ -287,21 +257,15 @@
         },
         {
           "text": "> You try to bribe him with your food. \"I am full. I want permit.\"",
-          "showIfAnyFlagMatches": [
-            "village_entrance_convince_guard_fail_food"
-          ]
+          "showIfAnyFlagMatches": ["village_entrance_convince_guard_fail_food"]
         },
         {
           "text": "> You try to bribe him with your sword. \"I have better sword. I want permit.\"",
-          "showIfAnyFlagMatches": [
-            "village_entrance_convince_guard_fail_sword"
-          ]
+          "showIfAnyFlagMatches": ["village_entrance_convince_guard_fail_sword"]
         },
         {
           "text": "> You show the permit to the guard. \"One permit, one entry.\"",
-          "showIfAnyFlagMatches": [
-            "village_entrance_convince_guard_success"
-          ]
+          "showIfAnyFlagMatches": ["village_entrance_convince_guard_success"]
         }
       ],
       "actions": [
@@ -388,12 +352,8 @@
         },
         {
           "text": "Show the permit to the guard",
-          "showIfAnyFlagMatches": [
-            "have_permit"
-          ],
-          "hideIfAnyFlagMatches": [
-            "village_entrance_convince_guard_success"
-          ],
+          "showIfAnyFlagMatches": ["have_permit"],
+          "hideIfAnyFlagMatches": ["village_entrance_convince_guard_success"],
           "triggers": [
             {
               "type": "add_flag",
@@ -403,9 +363,7 @@
         },
         {
           "text": "Enter village",
-          "showIfAnyFlagMatches": [
-            "village_entrance_convince_guard_success"
-          ],
+          "showIfAnyFlagMatches": ["village_entrance_convince_guard_success"],
           "triggers": [
             {
               "type": "movement",

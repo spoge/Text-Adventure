@@ -1,5 +1,3 @@
-import React from "react";
-
 const GameSaveReducer = (state, action) => {
   switch (action.type) {
     case "movement":
