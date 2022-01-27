@@ -61,19 +61,21 @@
         },
         {
           "text": "> You punch the palm tree. It really hurt. You're quite sure that you shouldn't do that again unless you suddenly become a lot stronger.",
-          "showIfAnyFlagMatches": ["punched_palm_tree"]
+          "showIfAnyFlagMatches": ["punched_palm_tree"],
+          "ignoreSortByFlag": true
         },
         {
           "text": "> Did you really punch the palm tree again? You start bleeding.",
-          "showIfAnyFlagMatches": ["punched_palm_tree_again"]
+          "showIfAnyFlagMatches": ["punched_palm_tree_again"],
+          "ignoreSortByFlag": true
         },
         {
           "text": "> You felled the palm tree with your sword.",
-          "showIfAllFlagsMatches": ["felled_palm_tree", "choose_sword"]
+          "showIfAllFlagsMatches": ["choose_sword", "felled_palm_tree"]
         },
         {
           "text": "> You felled the palm tree with a mighty punch.",
-          "showIfAllFlagsMatches": ["felled_palm_tree", "choose_food"]
+          "showIfAllFlagsMatches": ["choose_food", "felled_palm_tree"]
         }
       ],
       "actions": [
@@ -116,10 +118,6 @@
             {
               "type": "add_flag",
               "target": "felled_palm_tree"
-            },
-            {
-              "type": "remove_flag",
-              "target": "have_strength_potion"
             }
           ]
         },
@@ -154,15 +152,29 @@
       "name": "Beach - Palm Tree",
       "paragraphs": [
         "The palm tree lays before you.",
-        "You're certain you can open the coconut with your sword.",
-        "But you're also convinced that your sword will break in the process.",
+        {
+          "text": "You're certain you can open the coconut with your sword.",
+          "showIfAnyFlagMatches": ["choose_sword"]
+        },
+        {
+          "text": "But you're also convinced that your sword will break in the process.",
+          "showIfAnyFlagMatches": ["choose_sword"]
+        },
+        {
+          "text": "After felling the tree you feel the strength potion is beginning to wear off.",
+          "showIfAnyFlagMatches": ["choose_food"]
+        },
+        {
+          "text": "You should be able to open the coconut with your bare hands before then.",
+          "showIfAnyFlagMatches": ["choose_food"]
+        },
         {
           "text": "> Your sword breaks. But you now have an opened coconut. It smells juicy.",
-          "showIfAllFlagMatches": ["have_opened_coconut", "choose_sword"]
+          "showIfAllFlagsMatches": ["choose_sword", "have_opened_coconut"]
         },
         {
           "text": "> The potion wear out. But you now have an opened coconut. It smells juicy.",
-          "showIfAllFlagMatches": ["have_opened_coconut", "choose_food"]
+          "showIfAllFlagsMatches": ["choose_food", "have_opened_coconut"]
         },
         {
           "text": "> You said a prayer to the fallen palm tree.",

@@ -49,8 +49,9 @@ const showAnyFlagsIndex = (flags, obj) => {
   if (
     obj.showIfAnyFlagMatches === undefined &&
     !showIfAnyFlagMatches(flags, obj)
-  )
+  ) {
     return flags.length;
+  }
   return flags.findIndex((flag) => obj.showIfAnyFlagMatches.includes(flag));
 };
 
@@ -60,9 +61,11 @@ const showAllFlagsIndex = (flags, obj) => {
     !showIfAllFlagsMatches(flags, obj)
   )
     return flags.length;
-  const lastFlag = flags
-    .reverse()
+
+  const lastFlag = [...flags]
+    .sort(() => -1)
     .find((flag) => obj.showIfAllFlagsMatches.includes(flag));
+
   return flags.findIndex((flag) => flag === lastFlag);
 };
 
