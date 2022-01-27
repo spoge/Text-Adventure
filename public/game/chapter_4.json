@@ -9,7 +9,7 @@
       ],
       "actions": [
         {
-          "text": "Go back to forest entrance",
+          "text": "Go back to the entrance by the forest",
           "triggers": [
             {
               "type": "movement",
