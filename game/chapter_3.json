@@ -48,7 +48,7 @@
           "showIfAnyFlagMatches": ["have_strength_potion"]
         },
         {
-          "text": "> You pick up the paper. It seems to actually be an entry permit to a nearby village.",
+          "text": "> You pick up the paper. It seems to be an entry permit to a nearby village.",
           "showIfAnyFlagMatches": ["have_permit"]
         }
       ],
@@ -173,7 +173,18 @@
       "name": "Forest - Skeleton",
       "paragraphs": [
         "A poor soul ended their journey here many years ago.",
-        "There's a bag at the side of the skeleton."
+        {
+          "text": "There's a bag and a whetstone beside the skeleton.",
+          "showIfAnyFlagMatches": ["choose_sword"]
+        },
+        {
+          "text": "There's a bag beside the skeleton.",
+          "showIfAnyFlagMatches": ["choose_food"]
+        },
+        {
+          "text": "> You sharpen the sword with the whetstone. It's still weak, but it should cut more effectively now.",
+          "showIfAnyFlagMatches": ["have_sharpened_sword"]
+        }
       ],
       "actions": [
         {
@@ -182,6 +193,20 @@
             {
               "type": "movement",
               "target": "forest_3_skeleton_bag"
+            }
+          ]
+        },
+        {
+          "text": "Sharpen sword with whetstone",
+          "hideIfAnyFlagMatches": ["have_sharpened_sword"],
+          "triggers": [
+            {
+              "type": "remove_flag",
+              "target": "have_sword"
+            },
+            {
+              "type": "add_flag",
+              "target": "have_sharpened_sword"
             }
           ]
         },
@@ -200,7 +225,7 @@
       "id": "forest_3_skeleton_bag",
       "name": "Forest - Skeleton's Bag",
       "paragraphs": [
-        "In the bag you find a journal.",
+        "In the bag you find a whetstone and a journal.",
         {
           "text": "\"I didn't intend for it to end here. After all these years. After finally creating a potion of super strength, and acquiring the permit to enter the village. That annoying squirrel is taunting me. It will just end here...\"",
           "showIfAllFlagsMatches": ["read_skeleton_journal", "choose_food"]
@@ -262,6 +287,12 @@
         {
           "text": "> You try to bribe him with your sword. \"I have better sword. I want permit.\"",
           "showIfAnyFlagMatches": ["village_entrance_convince_guard_fail_sword"]
+        },
+        {
+          "text": "> You try to bribe him with your sharpened sword. \"Nice sword, but I have better sword. I want permit.\"",
+          "showIfAnyFlagMatches": [
+            "village_entrance_convince_guard_fail_sharpened_sword"
+          ]
         },
         {
           "text": "> You show the permit to the guard. \"One permit, one entry.\"",
@@ -334,6 +365,23 @@
           ]
         },
         {
+          "text": "Bribe guard with sharpened sword",
+          "showIfAllFlagsMatches": [
+            "have_sharpened_sword",
+            "village_entrance_convince_guard_fail"
+          ],
+          "hideIfAnyFlagMatches": [
+            "village_entrance_convince_guard_fail_sharpened_sword",
+            "village_entrance_convince_guard_success"
+          ],
+          "triggers": [
+            {
+              "type": "add_flag",
+              "target": "village_entrance_convince_guard_fail_sharpened_sword"
+            }
+          ]
+        },
+        {
           "text": "Bribe guard with opened coconut",
           "showIfAllFlagsMatches": [
             "have_opened_coconut",
@@ -351,7 +399,7 @@
           ]
         },
         {
-          "text": "Show the permit to the guard",
+          "text": "Show permit to guard",
           "showIfAnyFlagMatches": ["have_permit"],
           "hideIfAnyFlagMatches": ["village_entrance_convince_guard_success"],
           "triggers": [

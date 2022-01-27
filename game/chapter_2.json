@@ -48,7 +48,8 @@
         "Indeed, there is a forest here.",
         {
           "text": "Just at the entrance there's a palm tree with a coconut.",
-          "hideIfAnyFlagMatches": ["have_opened_coconut"]
+          "hideIfAnyFlagMatches": ["have_opened_coconut"],
+          "ignoreSortByFlag": true
         },
         {
           "text": "Just at the entrance there's a palm tree.",
@@ -61,27 +62,44 @@
         },
         {
           "text": "> You punch the palm tree. It really hurt. You're quite sure that you shouldn't do that again unless you suddenly become a lot stronger.",
-          "showIfAnyFlagMatches": ["punched_palm_tree"],
-          "ignoreSortByFlag": true
+          "showIfAnyFlagMatches": ["punched_palm_tree"]
         },
         {
           "text": "> Did you really punch the palm tree again? You start bleeding.",
-          "showIfAnyFlagMatches": ["punched_palm_tree_again"],
-          "ignoreSortByFlag": true
+          "showIfAnyFlagMatches": ["punched_palm_tree_again"]
         },
         {
-          "text": "> You felled the palm tree with your sword.",
+          "text": "> You felled the palm tree with your sharpened sword.",
           "showIfAllFlagsMatches": ["choose_sword", "felled_palm_tree"]
         },
         {
           "text": "> You felled the palm tree with a mighty punch.",
           "showIfAllFlagsMatches": ["choose_food", "felled_palm_tree"]
+        },
+        {
+          "text": "> You try to chop down the palm tree, but the sword is not sharp enough.",
+          "showIfAnyFlagMatches": ["felled_palm_tree_failed"]
         }
       ],
       "actions": [
         {
           "text": "Chop down palm tree",
           "showIfAnyFlagMatches": ["have_sword"],
+          "hideIfAnyFlagMatches": [
+            "felled_palm_tree",
+            "felled_palm_tree_failed",
+            "have_sharpened_sword"
+          ],
+          "triggers": [
+            {
+              "type": "add_flag",
+              "target": "felled_palm_tree_failed"
+            }
+          ]
+        },
+        {
+          "text": "Chop down palm tree with sharpened sword",
+          "showIfAnyFlagMatches": ["have_sharpened_sword"],
           "hideIfAnyFlagMatches": ["felled_palm_tree"],
           "triggers": [
             {
@@ -184,7 +202,7 @@
       "actions": [
         {
           "text": "Open coconut [sword will break]",
-          "showIfAnyFlagMatches": ["have_sword"],
+          "showIfAnyFlagMatches": ["have_sharpened_sword"],
           "hideIfAnyFlagMatches": ["have_opened_coconut"],
           "triggers": [
             {
@@ -193,7 +211,7 @@
             },
             {
               "type": "remove_flag",
-              "target": "have_sword"
+              "target": "have_sharpened_sword"
             }
           ]
         },
