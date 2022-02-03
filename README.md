@@ -2,15 +2,39 @@
 
 The goal of this project is to create a simple text adventure in React, where the entire adventure is stored in json. These files are static and immutable.
 
-The game only saves three things:
+The save game is comprised of three things:
 
 - Current Chapter
 - Current Scene
 - Flags (stored globally and can be accessed from any chapter or scene)
 
+## Controls & Shortcuts
+
+The game can be controlled by the arrow keys and enter, or by clicking an action directly.
+
+### Debug commands:
+
+- `Shift + H` - List of available debug commands
+- `Shift + D` - List of current flags
+- `Shift + C` - Clear all flags
+- `Shift + N` - Respawn at beginning
+
 ## About
 
 The game is loaded from json-files. Each json-file is a `chapter`.
+
+### First spawn
+
+The first time the game starts up it will load `_start_.json`. The contents of the file will determine which chapter, scene and which flags it should initialize with:
+
+```
+{
+  "chapterId": "chapter",
+  "sceneId": "scene_1",
+  "flags": []
+}
+
+```
 
 ### Structure of a `chapter.json`
 
