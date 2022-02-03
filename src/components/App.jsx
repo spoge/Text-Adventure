@@ -1,8 +1,8 @@
 import React, { useReducer, useMemo } from "react";
 import "../styles/App.css";
 import Game from "./Game";
-import { GameSaveReducer } from "../reducer/GameSaveReducer";
-import { GameInstanceReducer } from "../reducer/GameInstanceReducer";
+import { GameSaveReducer } from "../reducers/GameSaveReducer";
+import { GameInstanceReducer } from "../reducers/GameInstanceReducer";
 import GameContext from "./GameContext";
 
 const initialSaveState = {
