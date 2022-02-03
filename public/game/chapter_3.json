@@ -44,7 +44,7 @@
           "showIfAnyFlagMatches": ["gave_squirrel_coconut"]
         },
         {
-          "text": "> You pick up the potion of strength(?).",
+          "text": "> You pick up a potion of strength(?).",
           "showIfAnyFlagMatches": ["have_strength_potion"]
         },
         {
@@ -199,6 +199,7 @@
         {
           "text": "Sharpen sword with whetstone",
           "hideIfAnyFlagMatches": ["have_sharpened_sword"],
+          "showIfAnyFlagMatches": ["have_sword"],
           "triggers": [
             {
               "type": "remove_flag",
@@ -225,7 +226,7 @@
       "id": "forest_3_skeleton_bag",
       "name": "Forest - Skeleton's Bag",
       "paragraphs": [
-        "In the bag you find a whetstone and a journal.",
+        "In the bag you find a journal.",
         {
           "text": "\"I didn't intend for it to end here. After all these years. After finally creating a potion of super strength, and acquiring the permit to enter the village. That annoying squirrel is taunting me. It will just end here...\"",
           "showIfAllFlagsMatches": ["read_skeleton_journal", "choose_food"]
@@ -415,7 +416,7 @@
           "triggers": [
             {
               "type": "movement",
-              "target": "village_1",
+              "target": "village_forest_entrance",
               "chapterId": "chapter_4"
             }
           ]

@@ -1,6 +1,6 @@
 import { useContext } from "react";
 
-import { isVisible } from "../../scripts/CheckFlag";
+import { isVisible } from "../../utils/CheckFlag";
 import GameContext from "../GameContext";
 
 const Actions = ({ actions, onActionClick }) => {
@@ -17,7 +17,7 @@ const Actions = ({ actions, onActionClick }) => {
           .map((action, index) => (
             <div
               className={`action ${
-                instanceState.selectedIndex === index ? "selected" : ""
+                instanceState.actionIndex === index ? "selected" : ""
               }`}
               key={index}
               onClick={() => onActionClick(index)}

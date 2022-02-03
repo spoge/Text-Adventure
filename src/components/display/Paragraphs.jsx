@@ -2,7 +2,7 @@ import {
   isVisible,
   hasShowFlags,
   getActiveShowFlagIndex,
-} from "../../scripts/CheckFlag";
+} from "../../utils/CheckFlag";
 
 const Paragraphs = ({ flags, paragraphs }) => {
   const sortByShowFlags = (a, b) => {

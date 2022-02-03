@@ -3,7 +3,7 @@ const GameInstanceReducer = (state, action) => {
     case "set_selected_index":
       return {
         ...state,
-        selectedIndex: action.payload,
+        actionIndex: action.payload,
       };
     case "toggle_debug_mode":
       return {

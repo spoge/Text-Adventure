@@ -1,17 +1,19 @@
 import { useContext, useEffect, useRef, useState } from "react";
-import "../styles/Game.css";
-import Terminal from "./Terminal";
-import { isVisible } from "../scripts/CheckFlag";
-import dispatchTrigger from "../scripts/DispatchTrigger";
-import fetchChapter from "../scripts/FetchChapter";
+import { useKeyPress } from "../hooks/useKeyPress";
 import GameContext from "./GameContext";
-import HorizontalLine from "./common/HorizontalLine";
-import Paragraphs from "./game/Paragraphs";
-import Actions from "./game/Actions";
-import DebugStats from "./DebugStats";
+import "../styles/Game.css";
 import Title from "./common/Title";
 import SmallTitle from "./common/SmallTitle";
-import DebugHelp from "./DebugHelp";
+import HorizontalLine from "./common/HorizontalLine";
+import Actions from "./display/Actions";
+import Paragraphs from "./display/Paragraphs";
+import Terminal from "./display/Terminal";
+import DebugHelp from "./debug/DebugHelp";
+import DebugStats from "./debug/DebugStats";
+
+import { isVisible } from "../utils/CheckFlag";
+import dispatchTrigger from "../utils/DispatchTrigger";
+import fetchChapter from "../utils/FetchChapter";
 
 const Game = () => {
   const { saveState, saveDispatch, instanceState, instanceDispatch } =
@@ -22,77 +24,52 @@ const Game = () => {
   const flags = saveState.flags;
   const scene = chapter?.scenes?.find((l) => l.id === saveState.sceneId);
   const availableActions = scene?.actions?.filter((a) => isVisible(flags, a));
-  const selectedIndex = instanceState.selectedIndex;
+  const actionIndex = instanceState.actionIndex;
   const debugMode = instanceState.debugMode;
   const debugHelp = instanceState.debugHelp;
 
   useEffect(() => {
-    fetchChapter(saveState.chapterId, setChapter);
+    fetchChapter(saveState.chapterId).then((value) => setChapter(value));
     instanceDispatch({ type: "set_selected_index", payload: 0 });
     gameRef.current?.focus();
   }, [saveState, instanceDispatch]);
 
   const actionClick = (actionIndex) => {
-    const action = scene.actions.filter((a) => isVisible(flags, a))[
-      actionIndex
-    ];
-    action.triggers?.forEach((trigger) =>
-      dispatchTrigger(saveDispatch, trigger)
-    );
+    availableActions !== undefined &&
+      availableActions[actionIndex]?.triggers?.forEach((trigger) =>
+        dispatchTrigger(saveDispatch, trigger)
+      );
   };
 
-  const handleKeyDown = (e) => {
-    if (e.defaultPrevented) return;
-    switch (e.key) {
-      case "Enter":
-        actionClick(selectedIndex);
-        break;
-      case "Up":
-      case "ArrowUp":
-        if (selectedIndex - 1 >= 0) {
-          instanceDispatch({
-            type: "set_selected_index",
-            payload: instanceState.selectedIndex - 1,
-          });
-        }
-        break;
-      case "Down":
-      case "ArrowDown":
-        if (
-          scene !== undefined &&
-          selectedIndex + 1 < availableActions.length
-        ) {
-          instanceDispatch({
-            type: "set_selected_index",
-            payload: instanceState.selectedIndex + 1,
-          });
-        }
-        break;
-
-      // debug shortcuts
-      case "C":
-        saveDispatch({ type: "remove_all_flags" });
-        break;
-      case "D":
-        instanceDispatch({ type: "toggle_debug_mode", payload: {} });
-        break;
-      case "H":
-        instanceDispatch({ type: "toggle_debug_help", payload: {} });
-        break;
-      case "N":
-        dispatchTrigger(saveDispatch, {
-          type: "movement",
-          target: "shipwreck_1",
-          chapterId: "chapter_1",
-        });
-        break;
-      default:
-        break;
-    }
+  const setActionIndex = (newIndex) => {
+    if (newIndex < 0 || newIndex >= availableActions?.length) return;
+    instanceDispatch({
+      type: "set_selected_index",
+      payload: newIndex,
+    });
   };
+
+  const resetTrigger = () => {
+    return {
+      type: "movement",
+      target: "",
+      chapterId: "_start_",
+    };
+  };
+
+  // actions nav
+  useKeyPress(() => actionClick(actionIndex), ["Enter"]);
+  useKeyPress(() => setActionIndex(actionIndex - 1), ["ArrowUp", "Up"]);
+  useKeyPress(() => setActionIndex(actionIndex + 1), ["ArrowDown", "Down"]);
+
+  // debug shortcuts
+  useKeyPress(() => saveDispatch({ type: "remove_all_flags" }), ["C"]);
+  useKeyPress(() => instanceDispatch({ type: "toggle_debug_mode" }), ["D"]);
+  useKeyPress(() => instanceDispatch({ type: "toggle_debug_help" }), ["H"]);
+  useKeyPress(() => dispatchTrigger(saveDispatch, resetTrigger()), ["N"]);
 
   return (
-    <div className="game" ref={gameRef} tabIndex="0" onKeyDown={handleKeyDown}>
+    <div className="game" ref={gameRef} tabIndex="0">
       <Terminal>
         <Title title={scene?.name} />
         <HorizontalLine />

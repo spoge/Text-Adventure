@@ -6,6 +6,7 @@ const dispatchTrigger = (dispatch, trigger) => {
   ) {
     return;
   }
+
   switch (trigger.type) {
     case "movement":
       dispatch({

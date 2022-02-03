@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/Terminal.css";
+import "../../styles/Terminal.css";
 
 const Terminal = ({ children }) => {
   return (

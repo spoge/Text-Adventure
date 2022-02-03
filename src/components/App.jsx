@@ -1,18 +1,19 @@
-import React, { useReducer, useMemo } from "react";
+import React, { useEffect, useReducer, useMemo } from "react";
 import "../styles/App.css";
 import Game from "./Game";
+import GameContext from "./GameContext";
 import { GameSaveReducer } from "../reducers/GameSaveReducer";
 import { GameInstanceReducer } from "../reducers/GameInstanceReducer";
-import GameContext from "./GameContext";
+import fetchChapter from "../utils/FetchChapter";
 
 const initialSaveState = {
-  chapterId: "chapter_1",
-  sceneId: "shipwreck_1",
+  chapterId: "_start_",
+  sceneId: "",
   flags: [],
 };
 
 const initialInstanceState = {
-  selectedIndex: 0,
+  actionIndex: 0,
   debugMode: false,
   debugHelp: false,
 };
@@ -31,6 +32,15 @@ const App = () => {
   const contextValues = useMemo(() => {
     return { saveState, saveDispatch, instanceState, instanceDispatch };
   }, [saveState, saveDispatch, instanceState, instanceDispatch]);
+
+  // Spawn at starting location when chapterId is "_start_"
+  useEffect(() => {
+    if (saveState.chapterId !== "_start_") return;
+    fetchChapter("_start_").then((value) => {
+      saveDispatch({ type: "remove_all_flags", payload: {} });
+      saveDispatch({ type: "movement", payload: value });
+    });
+  }, [saveState.chapterId]);
 
   return (
     <div className="app">
