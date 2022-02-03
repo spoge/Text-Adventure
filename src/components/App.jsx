@@ -7,7 +7,7 @@ import { GameInstanceReducer } from "../reducers/GameInstanceReducer";
 import fetchChapter from "../utils/FetchChapter";
 
 const initialSaveState = {
-  chapterId: "start",
+  chapterId: "_start_",
   sceneId: "",
   flags: [],
 };
@@ -33,10 +33,10 @@ const App = () => {
     return { saveState, saveDispatch, instanceState, instanceDispatch };
   }, [saveState, saveDispatch, instanceState, instanceDispatch]);
 
-  // Spawn at starting location when chapterId is "start"
+  // Spawn at starting location when chapterId is "_start_"
   useEffect(() => {
-    if (saveState.chapterId !== "start") return;
-    fetchChapter("start").then((value) => {
+    if (saveState.chapterId !== "_start_") return;
+    fetchChapter("_start_").then((value) => {
       saveDispatch({ type: "remove_all_flags", payload: {} });
       saveDispatch({ type: "movement", payload: value });
     });
