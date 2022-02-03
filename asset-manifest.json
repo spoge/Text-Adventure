@@ -1,13 +1,12 @@
 {
   "files": {
     "main.css": "/text-adventure/static/css/main.a75c2673.css",
-    "main.js": "/text-adventure/static/js/main.bcd9b133.js",
-    "static/js/27.c4aad0c5.chunk.js": "/text-adventure/static/js/27.c4aad0c5.chunk.js",
+    "main.js": "/text-adventure/static/js/main.a6375c55.js",
     "static/media/ScreenMatrix.ttf": "/text-adventure/static/media/ScreenMatrix.fd85a34b1d5a1d249784.ttf",
     "index.html": "/text-adventure/index.html"
   },
   "entrypoints": [
     "static/css/main.a75c2673.css",
-    "static/js/main.bcd9b133.js"
+    "static/js/main.a6375c55.js"
   ]
 }
