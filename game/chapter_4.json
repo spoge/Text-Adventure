@@ -1,20 +1,209 @@
 {
   "scenes": [
     {
-      "id": "village_1",
+      "id": "village_forest_entrance",
       "name": "Village - Entrance",
+      "paragraphs": [
+        "You enter the village. It looks quite nice and is of a moderate size!",
+        "You look back and the door is already shut closed.",
+        "The village square is just before you."
+      ],
+      "actions": [
+        {
+          "text": "Go to Village Square",
+          "triggers": [
+            {
+              "type": "movement",
+              "target": "village_square"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "village_square",
+      "name": "Village - Square",
+      "paragraphs": ["The square is connected to most areas in the village."],
+      "actions": [
+        {
+          "text": "Go to Tavern",
+          "triggers": [
+            {
+              "type": "movement",
+              "target": "village_tavern"
+            }
+          ]
+        },
+        {
+          "text": "Go to Quest Board",
+          "triggers": [
+            {
+              "type": "movement",
+              "target": "village_square_quest_board"
+            }
+          ]
+        },
+        {
+          "text": "Go to Shopping District",
+          "showIfAnyFlagMatches": ["opened_village_shopping_district"],
+          "triggers": [
+            {
+              "type": "movement",
+              "target": "village_shopping_district"
+            }
+          ]
+        },
+        {
+          "text": "Go to Fishing Docks",
+          "showIfAnyFlagMatches": ["opened_village_fishing_docs"],
+          "triggers": [
+            {
+              "type": "movement",
+              "target": "village_fishing_docks"
+            }
+          ]
+        },
+        {
+          "text": "Go to Major's House",
+          "showIfAnyFlagMatches": ["opened_village_majors_house"],
+          "triggers": [
+            {
+              "type": "movement",
+              "target": "village_majors_house"
+            }
+          ]
+        },
+        {
+          "text": "Go to Orchards by the High Roads",
+          "showIfAnyFlagMatches": ["opened_village_orchard"],
+          "triggers": [
+            {
+              "type": "movement",
+              "target": "village_orchards"
+            }
+          ]
+        },
+        {
+          "text": "Go to Forest Entrance",
+          "showIfAnyFlagMatches": ["opened_village_forest_entrance"],
+          "triggers": [
+            {
+              "type": "movement",
+              "target": "village_forest_entrance"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "village_square_quest_board",
+      "name": "Village - Square - Quest Board",
+      "paragraphs": [
+        "Here you see all the available quests in the village.",
+        "For the moment only unemployment seems available."
+      ],
+      "actions": [
+        {
+          "text": "Step back",
+          "triggers": [
+            {
+              "type": "movement",
+              "target": "village_square"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "village_shopping_district",
+      "name": "Village - Shopping District",
       "paragraphs": [
         "You enter the village. It looks quite nice!",
         "If only you could do something here..."
       ],
       "actions": [
         {
-          "text": "Go back to the entrance by the forest",
+          "text": "Back to Village Square",
           "triggers": [
             {
               "type": "movement",
-              "target": "forest_4",
-              "chapterId": "chapter_3"
+              "target": "village_square"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "village_fishing_docks",
+      "name": "Village - Fishing Docks",
+      "paragraphs": [
+        "You enter the village. It looks quite nice!",
+        "If only you could do something here..."
+      ],
+      "actions": [
+        {
+          "text": "Go back to Village Square",
+          "triggers": [
+            {
+              "type": "movement",
+              "target": "village_square"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "village_tavern",
+      "name": "Village - Tavern",
+      "paragraphs": [
+        "The first thing that strikes you is the noise. Fishermen know how to keep it lively.",
+        "The tavern smells of good food and drinks - thankfully not too fishy."
+      ],
+      "actions": [
+        {
+          "text": "Back to Village Square",
+          "triggers": [
+            {
+              "type": "movement",
+              "target": "village_square"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "village_majors_house",
+      "name": "Village - Major's House",
+      "paragraphs": [
+        "You enter the village. It looks quite nice!",
+        "If only you could do something here..."
+      ],
+      "actions": [
+        {
+          "text": "Go back to Village Square",
+          "triggers": [
+            {
+              "type": "movement",
+              "target": "village_square"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "village_orchards",
+      "name": "Village - Orchards",
+      "paragraphs": [
+        "You enter the village. It looks quite nice!",
+        "If only you could do something here..."
+      ],
+      "actions": [
+        {
+          "text": "Go back to Village Square",
+          "triggers": [
+            {
+              "type": "movement",
+              "target": "village_square"
             }
           ]
         }
