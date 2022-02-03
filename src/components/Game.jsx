@@ -53,7 +53,7 @@ const Game = () => {
     return {
       type: "movement",
       target: "",
-      chapterId: "_start_",
+      chapterId: "start",
     };
   };
 

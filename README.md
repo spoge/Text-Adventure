@@ -25,7 +25,7 @@ The game is loaded from json-files. Each json-file is a `chapter`.
 
 ### First spawn
 
-The first time the game starts up it will load `_start_.json`. The contents of the file will determine which chapter, scene and which flags it should initialize with:
+The first time the game starts up it will load `start.json`. The contents of the file will determine which chapter, scene and which flags it should initialize with:
 
 ```
 {
