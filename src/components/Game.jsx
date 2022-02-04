@@ -32,6 +32,7 @@ const Game = () => {
     fetchChapter(saveState.chapterId).then((value) => setChapter(value));
     instanceDispatch({ type: "set_selected_index", payload: 0 });
     gameRef.current?.focus();
+    localStorage.setItem("save", JSON.stringify(saveState));
   }, [saveState, instanceDispatch]);
 
   const actionClick = (actionIndex) => {

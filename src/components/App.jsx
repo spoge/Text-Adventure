@@ -6,10 +6,13 @@ import { GameSaveReducer } from "../reducers/GameSaveReducer";
 import { GameInstanceReducer } from "../reducers/GameInstanceReducer";
 import fetchChapter from "../utils/FetchChapter";
 
-const initialSaveState = {
-  chapterId: "-start-",
-  sceneId: "",
-  flags: [],
+const fetchInitialSaveState = () => {
+  const localSave = JSON.parse(localStorage.getItem("save"));
+  return {
+    chapterId: localSave?.chapterId ? localSave.chapterId : "-start-",
+    sceneId: localSave?.sceneId ? localSave.sceneId : "",
+    flags: localSave?.flags ? [...localSave.flags] : [],
+  };
 };
 
 const initialInstanceState = {
@@ -21,7 +24,7 @@ const initialInstanceState = {
 const App = () => {
   const [saveState, saveDispatch] = useReducer(
     GameSaveReducer,
-    initialSaveState
+    fetchInitialSaveState()
   );
 
   const [instanceState, instanceDispatch] = useReducer(
