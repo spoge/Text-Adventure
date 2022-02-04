@@ -59,9 +59,12 @@ const Game = () => {
   };
 
   // actions nav
-  useKeyPress(() => actionClick(actionIndex), ["Enter"]);
-  useKeyPress(() => setActionIndex(actionIndex - 1), ["ArrowUp", "Up"]);
-  useKeyPress(() => setActionIndex(actionIndex + 1), ["ArrowDown", "Down"]);
+  useKeyPress(() => actionClick(actionIndex), ["Enter", " "]);
+  useKeyPress(() => setActionIndex(actionIndex - 1), ["ArrowUp", "Up", "w"]);
+  useKeyPress(
+    () => setActionIndex(actionIndex + 1),
+    ["ArrowDown", "Down", "s"]
+  );
 
   // debug shortcuts
   useKeyPress(() => saveDispatch({ type: "remove_all_flags" }), ["C"]);
