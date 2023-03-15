@@ -101,7 +101,7 @@ There are four different flag fields you can use.
 
 #### `showIfAnyFlagMatches` show paragraph/action if any flag in this field matches an obtained flag
 
-#### `showIfAllFlagsMatches` hide paragraph/action if all flags in this field matches obtained flags
+#### `showIfAllFlagsMatches` show paragraph/action if all flags in this field matches obtained flags
 
 #### `hideIfAllFlagsMatches` hide paragraph/action if all flags in this field matches obtained flags
 
